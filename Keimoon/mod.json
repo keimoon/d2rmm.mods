@@ -1,0 +1,16 @@
+{
+	"name": "Kei MOon",
+	"description": "Keimoon mod to destroy the Evils",
+	"author": "keimoon",
+	"website": "https://github.com/keimoon/d2rmm.mods",
+	"version": "1.0",
+	"config": [
+		{
+			"id": "cubeconfigitemlevel",
+			"type": "number",
+			"name": "Item level when making rare item",
+			"description": "Item level when making rare item",
+			"defaultValue": 20
+		}
+	]
+}
