@@ -1,0 +1,20 @@
+{
+	"name": "Kei MOon (Class specific)",
+	"description": "Keimoon mod to destroy the Evils, enable for each class",
+	"author": "keimoon",
+	"website": "https://github.com/keimoon/d2rmm.mods",
+	"version": "1.0",
+	"config": [
+		{
+			"id": "build",
+			"type": "select",
+			"name": "Class build",
+			"description": "Class build",
+			"defaultValue": "firesorc",
+			"options": [
+				{ "value": "firesorc", "label": "Fire Sorc" },
+				{ "value": "kicksin", "label": "Kick Sin" }
+			]
+		}
+	]
+}
