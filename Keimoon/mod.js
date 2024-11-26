@@ -70,6 +70,23 @@ function installWeaponMods() {
 	D2RMM.writeTsv(weaponFile, weapon);
 }
 
+// CHARSTAT
+// Increase Light Radius
+
+function installCharStatsMods() {
+	console.debug("Installing charstats.txt");
+	const charStatsFile = 'global\\excel\\charstats.txt';
+	let charStats = D2RMM.readTsv(charStatsFile);
+
+	charStats.rows.forEach((row) => {
+		if (row.LightRadius != '') {
+			row.LightRadius = 18;
+		}
+	});
+
+	D2RMM.writeTsv(charStatsFile, charStats);
+}
+
 // ITEMTYPES
 // Enable rare for charms
 
@@ -346,6 +363,24 @@ function changePandemoniumKeysProb(row) {
 // Change special drops for some mobs
 function changeSpecialDrops(row) {
 	const name = row['Treasure Class'];
+	if (name == 'Haphesto') {
+		row.Picks = 6;
+		row.Item2 = 'Perfect Gem';
+		for (i = 3; i <= 10; i++) {
+			if (row['Prob' + i] != '') {
+				row['Prob' + i] = 0;
+			}
+		}
+	}
+	if (name == 'Haphesto (N)') {
+		row.Picks = 6;
+		row.Item2 = 'Perfect Gem';
+		for (i = 3; i <= 10; i++) {
+			if (row['Prob' + i] != '') {
+				row['Prob' + i] = 0;
+			}
+		}
+	}
 	if (name == 'Haphesto (H)') {
 		row.Picks = 6;
 		row.Item2 = 'amu';
@@ -1060,6 +1095,7 @@ function installAllMods() {
 	installAutoMagicMods();
 	installArmorMods();
 	installWeaponMods();
+	installCharStatsMods();
 	installItemTypes();
 	installSkillMods();
 	installTreasureClassMod();
