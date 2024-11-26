@@ -5,8 +5,8 @@ inventory.rows.forEach((row) => {
     row.class === 'Transmogrify Box Page 1' ||
     row.class === 'Transmogrify Box2'
   ) {
-    row.gridX = 16;
-    row.gridY = 16;
+    row.gridX = 10;
+    row.gridY = 10;
   }
 });
 D2RMM.writeTsv(inventoryFilename, inventory);
@@ -19,50 +19,22 @@ const profileLVFilename = 'global\\ui\\layouts\\_profilelv.json';
 const profileLV = D2RMM.readJson(profileLVFilename);
 D2RMM.writeJson(profileLVFilename, profileLV);
 
-const horadricCubeLayoutFilename =
-  'global\\ui\\layouts\\horadriccubelayout.json';
-const horadricCubeLayout = D2RMM.readJson(horadricCubeLayoutFilename);
-horadricCubeLayout.children.forEach((child) => {
-  if (child.name === 'grid') {
-    child.fields.cellCount.x = 6;
-    child.fields.cellCount.y = 4;
-    // TODO: shift left for new sprite
-    // one cell = 29px, add 1 column to left and 2 columns to right of original space
-    child.fields.rect.x = child.fields.rect.x - 29;
-  }
-  // TODO: new sprite
-});
-D2RMM.writeJson(horadricCubeLayoutFilename, horadricCubeLayout);
-
 const horadricCubeLayoutHDFilename =
   'global\\ui\\layouts\\horadriccubelayouthd.json';
 const horadricCubeHDLayout = D2RMM.readJson(horadricCubeLayoutHDFilename);
 horadricCubeHDLayout.children.forEach((child) => {
   if (child.name === 'grid') {
-    child.fields.cellCount.x = 16;
-    child.fields.cellCount.y = 16;
-    child.fields.rect.x = child.fields.rect.x - 430;
-    child.fields.rect.y = child.fields.rect.y - 545;
-  }
-  if (child.name === 'title') {
-    child.fields.rect = {
-      x: 1155,
-      y: 1560,
-      width: 100,
-      height: 100,
-    };
-  }
-  if (child.name === 'close') {
-    child.fields.rect.x = child.fields.rect.x = 1570;
-    child.fields.rect.y = child.fields.rect.y = 1620;
+    child.fields.cellCount.x = 10;
+    child.fields.cellCount.y = 10;
+    child.fields.rect.x = 91;
+    child.fields.rect.y = 303;
   }
   if (child.name === 'convert') {
-    child.fields.rect.x = child.fields.rect.x = 1450;
-    child.fields.rect.y = child.fields.rect.y = 1575;
+    child.fields.rect.x = 523;
+    child.fields.rect.y = 1313;
   }
   if (child.name === 'background') {
     child.fields.filename = 'PANEL\\Horadric_Cube\\HoradricCube_BG_Expanded';
-    child.fields.rect = { x: - 90, y: - 110 };
   }
 });
 D2RMM.writeJson(horadricCubeLayoutHDFilename, horadricCubeHDLayout);
@@ -74,7 +46,12 @@ const controllerHoradricCubeHDLayout = D2RMM.readJson(
 );
 controllerHoradricCubeHDLayout.children.forEach((child) => {
   if (child.name === 'grid') {
-    child.fields.rect.x = child.fields.rect.x - 142;
+    child.fields.rect.x = 160;
+    child.fields.rect.y = 217;
+  }
+  if (child.name === 'convert') {
+    child.fields.rect.x = 593;
+    child.fields.rect.y = 1257;
   }
   if (child.name === 'background') {
     child.fields.filename =
