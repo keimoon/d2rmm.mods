@@ -1,7 +1,7 @@
 {
-  "name": "Expanded Cube",
-  "description": "Increases cube size to 16x16.",
-  "author": "ftaru17, olegbl, Bonesy-locbones, suzukis",
-  "website": "https://github.com/olegbl/d2rmm.mods",
-  "version": "0.1, Orig.v. 1.2"
+  "name": "10x10 Horadric Cube",
+  "description": "Expands the Horadric Cube's grid size to 10x10.",
+  "author": "MetalTxus",
+  "website": "https://www.nexusmods.com/diablo2resurrected/mods/379",
+  "version": "1.0"
 }
