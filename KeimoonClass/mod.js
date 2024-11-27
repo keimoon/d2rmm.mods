@@ -15,6 +15,18 @@ function installAllMods() {
 	D2RMM.writeTsv(magicsuffixFile, magicsuffix);
 }
 
+function updateClassSkillTab(row) {
+	row.rare = 1;
+	row.frequency = 200;
+	if (row.itype1 == 'lcha') {
+		row.frequency = 200;
+	} else if (row.mod1min == '1') {
+		row.maxlevel = 39;
+	} else if (row.mod1min == '2') {
+		row.maxlevel = 59;
+	}
+}
+
 // FIRE SORC
 function installModFireSorc(magicprefix, magicsuffix) {
 	magicprefix.rows.forEach((row) => {
@@ -23,8 +35,7 @@ function installModFireSorc(magicprefix, magicsuffix) {
 			changeCommonPrefix(row, iTypes);
 			changeCasterMagicPrefix(row, iTypes);
 			if (row.group == '125' && row.mod1param == '3') {
-				row.rare = 1;
-				row.frequency = 200;
+				updateClassSkillTab(row);
 			}
 		}
 	});
