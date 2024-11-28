@@ -9,6 +9,8 @@ function installAllMods() {
 
 	if (build == 'firesorc') {
 		installModFireSorc(magicprefix, magicsuffix);
+	} else if (build == 'kicksin') {
+		installModKickSin(magicprefix, magicsuffix);
 	}
 
 	D2RMM.writeTsv(magicprefixFile, magicprefix);
@@ -45,6 +47,28 @@ function installModFireSorc(magicprefix, magicsuffix) {
 			let iTypes = getItypesFromRow(row);
 			changeCommonMagicSuffix(row, iTypes);
 			changeCasterMagicSuffix(row, iTypes);
+		}
+	});
+}
+
+// KICKSIN
+function installModKickSin(magicprefix, magicsuffix) {
+	magicprefix.rows.forEach((row) => {
+		if (row.version == '1' || row.version == '100') {
+			let iTypes = getItypesFromRow(row);
+			changeCommonPrefix(row, iTypes);
+			changePhysicMagicPrefix(row, iTypes);
+			if (row.group == '125' && row.mod1param == '20') {
+				updateClassSkillTab(row);
+			}
+		}
+	});
+
+	magicsuffix.rows.forEach((row) => {
+		if (row.version == '1' || row.version == '100') {
+			let iTypes = getItypesFromRow(row);
+			changeCommonMagicSuffix(row, iTypes);
+			changePhysicMagicSuffix(row, iTypes);
 		}
 	});
 }
@@ -88,6 +112,49 @@ function changeCasterManaKillPrefix(row, iTypes) {
 	}
 }
 
+// PHYSIC PREFIX
+function changePhysicMagicPrefix(row, iTypes) {
+	changeDamagePercentPrefix(row);
+	changeCharmMaxDamagePrefix(row);
+}
+
+function changeDamagePercentPrefix(row) {
+	if (row.group == '105' && row.mod1code == 'dmg%' && row.itype1 == 'weap') {
+		row.rare = 1;
+		row.frequency = 100;
+	}
+	if (row.group == '105' && row.mod1code == 'dmg%' && row.itype1 == 'jewl' && row.Name == 'Ruby') {
+		row.rare = 1;
+		row.frequency = 100;
+	}
+}
+
+function changeCharmMaxDamagePrefix(row) {
+	if (row.group == '111') {
+		if (row.itype1 == 'lcha') {
+			row.rare = 1;
+			row.frequency = 100;
+			if (row.level == '15') {
+				row.maxlevel = '21';
+			}
+			if (row.level == '22') {
+				row.maxlevel = '28';
+			}
+		}
+		if (row.itype1 == 'mcha') {
+			row.rare = 1;
+			row.frequency = 100;
+			if (row.level == '19') {
+				row.maxlevel = '27';
+			}
+		}
+		if (row.itype1 == 'scha') {
+			row.rare = 1;
+			row.frequency = 100;
+		}
+	}
+}
+
 // COMMON SUFFIX
 function changeCommonMagicSuffix(row, iTypes) {
 	changeCommonHPSuffix(row, iTypes);
@@ -124,6 +191,34 @@ function changeCasterFCRSuffix(row, iTypes) {
 		} else {
 			row.frequency = 200;
 		}
+	}
+}
+
+// PHYSIC SUFFIX
+function changePhysicMagicSuffix(row, iTypes) {
+	changeIASSuffix(row);
+	changeLifeLeechSuffix(row);
+	changeManaLeechSuffix(row);
+}
+
+function changeIASSuffix(row) {
+	if (row.group == '7') {
+		row.rare = 1;
+		row.frequency = 100;
+	}
+}
+
+function changeLifeLeechSuffix(row) {
+	if (row.group == '27') {
+		row.rare = 1;
+		row.frequency = 100;
+	}
+}
+
+function changeManaLeechSuffix(row) {
+	if (row.group == '28') {
+		row.rare = 1;
+		row.frequency = 100;
 	}
 }
 
