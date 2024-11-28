@@ -116,6 +116,7 @@ function installSkillMods() {
 
 	changeMissileSpeed(missile);
 	changeSorceressSkill(skill, missile);
+	changeAssassinSkill(skill, missile);
 
 	D2RMM.writeTsv(missileFile, missile);
 	D2RMM.writeTsv(skillFile, skill);
@@ -143,7 +144,10 @@ function changeMissileSpeed(missile) {
 		['moltenboulder', '16'],
 		['firestormmaker', '32'],
 		['strafearrow', '48'],
-		['strafebolt', '48']
+		['strafebolt', '48'],
+		['wake of destruction maker', '20'],
+		['wake of destruction', '16'],
+		['sentrylightningbolt', '45']
 	]);
 	missile.rows.forEach((row) => {
 		let newVel = vels.get(row.Missile);
@@ -190,6 +194,67 @@ function changeSorcMissileMeteor(row) {
 		row.Range = '15';
 		row.CltParam1 = '14';
 	}
+}
+
+// ASSASSIN SKILLS
+function changeAssassinSkill(skill, missile) {
+	console.debug("Changing Assassin skills");
+	skill.rows.forEach((row) => {
+		if (row.skill == 'Fire Trauma') {
+			row.Param1 = '30';
+		}
+		if (row.skill == 'Tiger Strike') {
+			row.Param3 = '10000';
+		}
+		if (row.skill == 'Quickness') {
+			row.Param5 = '10000';
+		}
+		if (row.skill == 'Fists of Fire') {
+			row.Param1 = '30';
+		}
+		if (row.skill == 'Wake of Fire Sentry') {
+			row.Param1 = '30';
+		}
+		if (row.skill == 'Wake Of Destruction Sentry') {
+			row.Param8 = '30';
+		}
+		if (row.skill == 'Cobra Strike') {
+			row.Param3 = '10000';
+		}
+		if (row.skill == 'Dragon Tail') {
+			row.Param3 = '30';
+			row.Param4 = '0';
+		}
+		if (row.skill == 'Lightning Sentry') {
+			row.Param1 = '30';
+		}
+		if (row.skill == 'Lightning Sentry') {
+			row.Param1 = '30';
+		}
+		if (row.skill == 'sentry lightning') {
+			row.Param8 = '30';
+		}
+		if (row.skill == 'Blades of Ice') {
+			row.Param1 = '30';
+			row.Param2 = '30';
+		}
+		if (row.skill == 'Royal Strike') {
+			row.Param1 = '30';
+			row.Param2 = '30';
+			row.Param5 = '64';
+		}
+	});
+	missile.rows.forEach((row) => {
+		if (row.Missile == 'wake of destruction maker') {
+			row.Range = '40';
+		}
+		if (row.Missile == 'wake of destruction') {
+			row.Range = '30';
+		}
+		if (row.Missile == 'sentrylightningbolt') {
+			row.Range = '40';
+		}
+	});
 }
 
 // TREASURE CLASSES
