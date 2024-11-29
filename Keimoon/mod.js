@@ -117,6 +117,7 @@ function installSkillMods() {
 	changeMissileSpeed(missile);
 	changeSorceressSkill(skill, missile);
 	changeAssassinSkill(skill, missile);
+	changeBarbarianSkill(skill, missile);
 
 	D2RMM.writeTsv(missileFile, missile);
 	D2RMM.writeTsv(skillFile, skill);
@@ -207,7 +208,7 @@ function changeAssassinSkill(skill, missile) {
 			row.Param3 = '10000';
 		}
 		if (row.skill == 'Quickness') {
-			row.Param5 = '10000';
+			row.Param5 = '90000';
 		}
 		if (row.skill == 'Fists of Fire') {
 			row.Param1 = '30';
@@ -254,6 +255,21 @@ function changeAssassinSkill(skill, missile) {
 		if (row.Missile == 'sentrylightningbolt') {
 			row.Range = '40';
 		}
+	});
+}
+
+// BARBARIAN SKILL
+function changeBarbarianSkill(skill, missile) {
+	console.debug("Changing Barbarian skills");
+	skill.rows.forEach((row) => {
+		if (row.skill == 'Battle Orders') {
+			row.Param1 = '90000';
+		}
+		if (row.skill == 'Battle Command') {
+			row.Param1 = '90000';
+		}
+	});
+	missile.rows.forEach((row) => {
 	});
 }
 
