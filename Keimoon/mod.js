@@ -212,6 +212,7 @@ function changeAssassinSkill(skill, missile) {
 		}
 		if (row.skill == 'Fists of Fire') {
 			row.Param1 = '30';
+			row.Param3 = '10000';
 		}
 		if (row.skill == 'Wake of Fire Sentry') {
 			row.Param1 = '30';
@@ -238,6 +239,7 @@ function changeAssassinSkill(skill, missile) {
 		if (row.skill == 'Blades of Ice') {
 			row.Param1 = '30';
 			row.Param2 = '30';
+			row.Param3 = '10000';
 		}
 		if (row.skill == 'Royal Strike') {
 			row.Param1 = '30';
