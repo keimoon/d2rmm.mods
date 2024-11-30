@@ -45,7 +45,7 @@ function installModFireSorc(magicprefix, magicsuffix) {
 	magicsuffix.rows.forEach((row) => {
 		if (row.version == '1' || row.version == '100') {
 			let iTypes = getItypesFromRow(row);
-			changeCommonMagicSuffix(row, iTypes);
+			changeCommonMagicSuffix(row, iTypes, false);
 			changeCasterMagicSuffix(row, iTypes);
 		}
 	});
@@ -67,7 +67,7 @@ function installModKickSin(magicprefix, magicsuffix) {
 	magicsuffix.rows.forEach((row) => {
 		if (row.version == '1' || row.version == '100') {
 			let iTypes = getItypesFromRow(row);
-			changeCommonMagicSuffix(row, iTypes);
+			changeCommonMagicSuffix(row, iTypes, true);
 			changePhysicMagicSuffix(row, iTypes);
 		}
 	});
@@ -156,9 +156,12 @@ function changeCharmMaxDamagePrefix(row) {
 }
 
 // COMMON SUFFIX
-function changeCommonMagicSuffix(row, iTypes) {
+function changeCommonMagicSuffix(row, iTypes, enableChargedTeleport) {
 	changeCommonHPSuffix(row, iTypes);
 	changeCommonMoveSuffix(row, iTypes);
+	if (enableChargedTeleport) {
+		changeCommonChargedTeleport(row, iTypes);
+	}
 }
 
 // HP suffix
@@ -174,6 +177,14 @@ function changeCommonMoveSuffix(row, iTypes) {
 	if (row.group == '35' && row.itype1 == 'boot') {
 		row.rare = 1;
 		row.frequency = 100;
+	}
+}
+
+// Charged Teleport staff
+function changeCommonChargedTeleport(row, iTypes) {
+	if (row.group == '44' && row.itype1 == 'staf' and row.Name = 'of Teleportation') {
+		row.rare = 1;
+		row.frequency = 200;
 	}
 }
 
