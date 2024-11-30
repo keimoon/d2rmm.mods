@@ -182,7 +182,7 @@ function changeCommonMoveSuffix(row, iTypes) {
 
 // Charged Teleport staff
 function changeCommonChargedTeleport(row, iTypes) {
-	if (row.group == '44' && row.itype1 == 'staf' and row.Name = 'of Teleportation') {
+	if (row.group == '44' && row.itype1 == 'staf' && row.Name == 'of Teleportation') {
 		row.rare = 1;
 		row.frequency = 200;
 	}
