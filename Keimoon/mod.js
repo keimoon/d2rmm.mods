@@ -118,6 +118,7 @@ function installSkillMods() {
 	changeSorceressSkill(skill, missile);
 	changeAssassinSkill(skill, missile);
 	changeBarbarianSkill(skill, missile);
+	changeAmazonSkill(skill, missile);
 
 	D2RMM.writeTsv(missileFile, missile);
 	D2RMM.writeTsv(skillFile, skill);
@@ -272,6 +273,27 @@ function changeBarbarianSkill(skill, missile) {
 		}
 	});
 	missile.rows.forEach((row) => {
+	});
+}
+
+// AMAZON SKILL
+function changeAmazonSkill(skill, missile) {
+	console.debug("Changing Amazon skills");
+	skill.rows.forEach((row) => {
+		if (row.skill == 'Freezing Arrow') {
+			row.Param1 = '30';
+		}
+		if (row.skill == 'Lightning Fury') {
+			row.Param3 = '30';
+		}
+	});
+	missile.rows.forEach((row) => {
+		if (row.Missile == 'explodingarrowexp2') {
+			row.sHitPar1 = '30';
+		}
+		if (row.Missile == 'freezingarrowexp3') {
+			row.sHitPar1 = '30';
+		}
 	});
 }
 

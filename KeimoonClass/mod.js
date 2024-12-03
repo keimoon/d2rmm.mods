@@ -11,6 +11,10 @@ function installAllMods() {
 		installModFireSorc(magicprefix, magicsuffix);
 	} else if (build == 'kicksin') {
 		installModKickSin(magicprefix, magicsuffix);
+	} else if (build == 'explodingarrowzon') {
+		installModExplodingArrowAmazon(magicprefix, magicsuffix);
+	} else if (build == 'javazon') {
+		installModJavazon(magicprefix, magicsuffix);
 	}
 
 	D2RMM.writeTsv(magicprefixFile, magicprefix);
@@ -59,6 +63,132 @@ function installModKickSin(magicprefix, magicsuffix) {
 			changeCommonPrefix(row, iTypes);
 			changePhysicMagicPrefix(row, iTypes);
 			if (row.group == '125' && row.mod1param == '20') {
+				updateClassSkillTab(row);
+			}
+		}
+	});
+
+	magicsuffix.rows.forEach((row) => {
+		if (row.version == '1' || row.version == '100') {
+			let iTypes = getItypesFromRow(row);
+			changeCommonMagicSuffix(row, iTypes, true);
+			changePhysicMagicSuffix(row, iTypes);
+		}
+	});
+}
+
+// EXLODING ARROW AMAZON
+function installModExplodingArrowAmazon(magicprefix, magicsuffix) {
+	magicprefix.rows.forEach((row) => {
+		if (row.version == '1' || row.version == '100') {
+			let iTypes = getItypesFromRow(row);
+			changeCommonPrefix(row, iTypes);
+			changeCasterManaKillPrefix(row, iTypes);
+			if (row.group == '125' && row.mod1param == '0') {
+				updateClassSkillTab(row);
+			}
+			changeFireDamageMagicPrefix(row);
+		}
+	});
+
+	magicsuffix.rows.forEach((row) => {
+		if (row.version == '1' || row.version == '100') {
+			let iTypes = getItypesFromRow(row);
+			changeCommonMagicSuffix(row, iTypes, true);
+			changePhysicMagicSuffix(row, iTypes);
+			changeFireDamageMagicSuffix(row);
+		}
+	});
+}
+
+function changeFireDamageMagicPrefix(row) {
+	if (row.group == '138') {
+		row.frequency = 100;
+		row.rare = 1;
+		if (row.itype1 == 'weap') {
+			if (row.level == '25') {
+				row.maxlevel = '34';
+			} else if (row.level == '35') {
+				row.maxlevel = '46';
+			} else if (row.level == '47') {
+				row.maxlevel = '60';
+			} else if (row.level == '61') {
+				row.maxlevel = '76';
+			}
+		} else if (row.itype1 == 'lcha') {
+			if (row.level == '5') {
+				row.maxlevel = '14';
+			} else if (row.level == '15') {
+				row.maxlevel = '27';
+			} else if (row.level == '28') {
+				row.maxlevel = '42';
+			}
+		} else if (row.itype1 == 'mcha') {
+			if (row.level == '13') {
+				row.maxlevel = '26';
+			} else if (row.level == '27') {
+				row.maxlevel = '46';
+			} else if (row.level == '47') {
+				row.maxlevel = '66';
+			}
+		} else if (row.itype1 == 'scha') {
+			if (row.level == '21') {
+				row.maxlevel = '39';
+			} else if (row.level == '40') {
+				row.maxlevel = '63';
+			} else if (row.level == '64') {
+				row.maxlevel = '88';
+			}
+		}
+	}
+}
+
+function changeFireDamageMagicSuffix(row) {
+	if (row.group == '12' && row.mod1code == 'fire-min' && row.iType1 != 'mele' && row.iType1 != 'jewl') {
+		row.frequency = 100;
+		row.rare = 1;
+		if (row.itype1 == 'weap') {
+			if (row.level == '4') {
+				row.maxlevel = '14';
+			} else if (row.level == '15') {
+				row.maxlevel = '24';
+			}
+		} else if (row.itype1 == 'lcha') {
+			if (row.level == '3') {
+				row.maxlevel = '7';
+			} else if (row.level == '8') {
+				row.maxlevel = '13';
+			} else if (row.level == '14') {
+				row.maxlevel = '21';
+			}
+		} else if (row.itype1 == 'mcha') {
+			if (row.level == '7') {
+				row.maxlevel = '13';
+			} else if (row.level == '14') {
+				row.maxlevel = '23';
+			} else if (row.level == '24') {
+				row.maxlevel = '33';
+			}
+		} else if (row.itype1 == 'scha') {
+			if (row.level == '11') {
+				row.maxlevel = '19';
+			} else if (row.level == '20') {
+				row.maxlevel = '31';
+			} else if (row.level == '32') {
+				row.maxlevel = '44';
+			}
+		}
+	}
+}
+
+// JAVAZON
+function installModJavazon(magicprefix, magicsuffix) {
+	magicprefix.rows.forEach((row) => {
+		if (row.version == '1' || row.version == '100') {
+			let iTypes = getItypesFromRow(row);
+			changeCommonPrefix(row, iTypes);
+			changeCasterManaKillPrefix(row, iTypes);
+			if (row.group == '125' && row.mod1param == '2') {
 				updateClassSkillTab(row);
 			}
 		}
