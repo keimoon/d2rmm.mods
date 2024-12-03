@@ -13,7 +13,9 @@
 			"defaultValue": "firesorc",
 			"options": [
 				{ "value": "firesorc", "label": "Fire Sorc" },
-				{ "value": "kicksin", "label": "Kick Sin" }
+				{ "value": "kicksin", "label": "Kick Sin" },
+				{ "value": "explodingarrowzon", "label": "Exploding Arrow Amazon" },
+				{ "value": "javazon", "label": "Javazon" }
 			]
 		}
 	]
