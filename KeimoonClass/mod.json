@@ -15,7 +15,9 @@
 				{ "value": "firesorc", "label": "Fire Sorc" },
 				{ "value": "kicksin", "label": "Kick Sin" },
 				{ "value": "explodingarrowzon", "label": "Exploding Arrow Amazon" },
-				{ "value": "javazon", "label": "Javazon" }
+				{ "value": "javazon", "label": "Javazon" },
+				{ "value": "holyfirepaladin", "label": "Holy Fire Paladin" },
+				{ "value": "tesladin", "label": "Tesladin" }
 			]
 		}
 	]
