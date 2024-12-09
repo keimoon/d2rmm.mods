@@ -15,6 +15,10 @@ function installAllMods() {
 		installModExplodingArrowAmazon(magicprefix, magicsuffix);
 	} else if (build == 'javazon') {
 		installModJavazon(magicprefix, magicsuffix);
+	} else if (build == 'holyfirepaladin') {
+		installModHolyFirePaladin(magicprefix, magicsuffix);
+	} else if (build == 'tesladin') {
+		installModTesladin(magicprefix, magicsuffix);
 	}
 
 	D2RMM.writeTsv(magicprefixFile, magicprefix);
@@ -189,6 +193,52 @@ function installModJavazon(magicprefix, magicsuffix) {
 			changeCommonPrefix(row, iTypes);
 			changeCasterManaKillPrefix(row, iTypes);
 			if (row.group == '125' && row.mod1param == '2') {
+				updateClassSkillTab(row);
+			}
+		}
+	});
+
+	magicsuffix.rows.forEach((row) => {
+		if (row.version == '1' || row.version == '100') {
+			let iTypes = getItypesFromRow(row);
+			changeCommonMagicSuffix(row, iTypes, true);
+			changePhysicMagicSuffix(row, iTypes);
+		}
+	});
+}
+
+// HOLY FIRE PALADIN
+function installModHolyFirePaladin(magicprefix, magicsuffix) {
+	magicprefix.rows.forEach((row) => {
+		if (row.version == '1' || row.version == '100') {
+			let iTypes = getItypesFromRow(row);
+			changeCommonPrefix(row, iTypes);
+			changeCasterManaKillPrefix(row, iTypes);
+			if (row.group == '125' && row.mod1param == '10') {
+				updateClassSkillTab(row);
+			}
+			changeFireDamageMagicPrefix(row);
+		}
+	});
+
+	magicsuffix.rows.forEach((row) => {
+		if (row.version == '1' || row.version == '100') {
+			let iTypes = getItypesFromRow(row);
+			changeCommonMagicSuffix(row, iTypes, true);
+			changePhysicMagicSuffix(row, iTypes);
+			changeFireDamageMagicSuffix(row);
+		}
+	});
+}
+
+// TESLADIN
+function installModTesladin(magicprefix, magicsuffix) {
+	magicprefix.rows.forEach((row) => {
+		if (row.version == '1' || row.version == '100') {
+			let iTypes = getItypesFromRow(row);
+			changeCommonPrefix(row, iTypes);
+			changePhysicMagicPrefix(row, iTypes);
+			if (row.group == '125' && row.mod1param == '9') {
 				updateClassSkillTab(row);
 			}
 		}
