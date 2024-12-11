@@ -249,6 +249,7 @@ function installModTesladin(magicprefix, magicsuffix) {
 			let iTypes = getItypesFromRow(row);
 			changeCommonMagicSuffix(row, iTypes, true);
 			changePhysicMagicSuffix(row, iTypes);
+			changeAmulChargedTeleport(row, iTypes);
 		}
 	});
 }
@@ -363,6 +364,14 @@ function changeCommonMoveSuffix(row, iTypes) {
 // Charged Teleport staff
 function changeCommonChargedTeleport(row, iTypes) {
 	if (row.group == '44' && row.itype1 == 'staf' && row.Name == 'of Teleportation') {
+		row.rare = 1;
+		row.frequency = 200;
+	}
+}
+
+// Charged Teleport amul
+function changeAmulChargedTeleport(row, iTypes) {
+	if (row.group == '44' && row.itype1 == 'amul' && row.Name == 'of Teleportation') {
 		row.rare = 1;
 		row.frequency = 200;
 	}
