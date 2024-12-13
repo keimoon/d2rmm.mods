@@ -19,6 +19,8 @@ function installAllMods() {
 		installModHolyFirePaladin(magicprefix, magicsuffix);
 	} else if (build == 'tesladin') {
 		installModTesladin(magicprefix, magicsuffix);
+	} else if (build == 'lightsorc') {
+		installModLightSorc(magicprefix, magicsuffix);
 	}
 
 	D2RMM.writeTsv(magicprefixFile, magicprefix);
@@ -250,6 +252,29 @@ function installModTesladin(magicprefix, magicsuffix) {
 			changeCommonMagicSuffix(row, iTypes, true);
 			changePhysicMagicSuffix(row, iTypes);
 			changeAmulChargedTeleport(row, iTypes);
+		}
+	});
+}
+
+// LIGHT SORC
+function installModLightSorc(magicprefix, magicsuffix) {
+	magicprefix.rows.forEach((row) => {
+		if (row.version == '1' || row.version == '100') {
+			let iTypes = getItypesFromRow(row);
+			changeCommonPrefix(row, iTypes);
+			changeCasterMagicPrefix(row, iTypes);
+			if (row.group == '125' && row.mod1param == '4') {
+				updateClassSkillTab(row);
+			}
+		}
+	});
+
+	magicsuffix.rows.forEach((row) => {
+		if (row.version == '1' || row.version == '100') {
+			let iTypes = getItypesFromRow(row);
+			changeCommonMagicSuffix(row, iTypes, false);
+			changePhysicMagicSuffix(row, iTypes);
+			changeCasterMagicSuffix(row, iTypes);
 		}
 	});
 }
