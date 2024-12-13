@@ -149,7 +149,8 @@ function changeMissileSpeed(missile) {
 		['strafebolt', '48'],
 		['wake of destruction maker', '20'],
 		['wake of destruction', '16'],
-		['sentrylightningbolt', '45']
+		['sentrylightningbolt', '45'],
+		['chargedbolt', '36']
 	]);
 	missile.rows.forEach((row) => {
 		let newVel = vels.get(row.Missile);
@@ -167,6 +168,20 @@ function changeSorceressSkill(skill, missile) {
 	skill.rows.forEach((row) => {
 		changeSorcSkillFireBall(row);
 		changeSorcSkillMeteor(row);
+		if (row.skill == 'Charged Bolt') {
+			row.Param1 = '30';
+		}
+		if (row.skill == 'Enchant') {
+			row.Param1 = '36000';
+		}
+		if (row.skill == 'Chain Lightning') {
+			row.Param1 = '40';
+			row.Param3 = '15';
+			row.Param5 = '1';
+		}
+		if (row.skill == 'Teleport') {
+			row.restrict = '1';
+		}
 	});
 	missile.rows.forEach((row) => {
 		changeSorcMissileMeteor(row);
@@ -267,9 +282,11 @@ function changeBarbarianSkill(skill, missile) {
 	skill.rows.forEach((row) => {
 		if (row.skill == 'Battle Orders') {
 			row.Param1 = '90000';
+			row.restrict = '1';
 		}
 		if (row.skill == 'Battle Command') {
 			row.Param1 = '90000';
+			row.restrict = '1';
 		}
 	});
 	missile.rows.forEach((row) => {
