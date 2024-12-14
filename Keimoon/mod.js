@@ -150,7 +150,9 @@ function changeMissileSpeed(missile) {
 		['wake of destruction maker', '20'],
 		['wake of destruction', '16'],
 		['sentrylightningbolt', '45'],
-		['chargedbolt', '36']
+		['chargedbolt', '36'],
+		['lightningbolt', '60'],
+		['chainlightning', '60']
 	]);
 	missile.rows.forEach((row) => {
 		let newVel = vels.get(row.Missile);
