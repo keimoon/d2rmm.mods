@@ -18,7 +18,8 @@
 				{ "value": "javazon", "label": "Javazon" },
 				{ "value": "holyfirepaladin", "label": "Holy Fire Paladin" },
 				{ "value": "tesladin", "label": "Tesladin" },
-				{ "value": "lightsorc", "label": "Lightning sorc" }
+				{ "value": "lightsorc", "label": "Lightning sorc" },
+				{ "value": "bearsorc", "label": "Bear sorc" }
 			]
 		}
 	]

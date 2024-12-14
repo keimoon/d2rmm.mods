@@ -21,6 +21,8 @@ function installAllMods() {
 		installModTesladin(magicprefix, magicsuffix);
 	} else if (build == 'lightsorc') {
 		installModLightSorc(magicprefix, magicsuffix);
+	} else if (build == 'bearsorc') {
+		installBearSorc(magicprefix, magicsuffix);
 	}
 
 	D2RMM.writeTsv(magicprefixFile, magicprefix);
@@ -273,8 +275,29 @@ function installModLightSorc(magicprefix, magicsuffix) {
 		if (row.version == '1' || row.version == '100') {
 			let iTypes = getItypesFromRow(row);
 			changeCommonMagicSuffix(row, iTypes, false);
-			changePhysicMagicSuffix(row, iTypes);
 			changeCasterMagicSuffix(row, iTypes);
+		}
+	});
+}
+
+// BEAR SORC
+function installModBearSorc(magicprefix, magicsuffix) {
+	magicprefix.rows.forEach((row) => {
+		if (row.version == '1' || row.version == '100') {
+			let iTypes = getItypesFromRow(row);
+			changeCommonPrefix(row, iTypes);
+			changePhysicMagicPrefix(row, iTypes);
+			if (row.group == '125' && row.mod1param == '4') {
+				updateClassSkillTab(row);
+			}
+		}
+	});
+
+	magicsuffix.rows.forEach((row) => {
+		if (row.version == '1' || row.version == '100') {
+			let iTypes = getItypesFromRow(row);
+			changeCommonMagicSuffix(row, iTypes, false);
+			changePhysicMagicSuffix(row, iTypes);
 		}
 	});
 }
