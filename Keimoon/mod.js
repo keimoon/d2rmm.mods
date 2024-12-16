@@ -175,7 +175,7 @@ function changeSorceressSkill(skill, missile) {
 			row.Param1 = '30';
 		}
 		if (row.skill == 'Enchant') {
-			row.Param1 = '36000';
+			row.Param1 = '90000';
 		}
 		if (row.skill == 'Chain Lightning') {
 			row.Param1 = '40';
@@ -184,6 +184,11 @@ function changeSorceressSkill(skill, missile) {
 		}
 		if (row.skill == 'Teleport') {
 			row.restrict = '1';
+		}
+		if (row.skill == 'Thunder Storm') {
+			row.Param1 = '90000';
+			row.Param3 = '1'
+			row.Param5 = '100';
 		}
 	});
 	missile.rows.forEach((row) => {
