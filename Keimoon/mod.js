@@ -323,6 +323,9 @@ function changeDruidSkill(skill, missile) {
 		if (row.skill == 'Shape Shifting') {
 			row.Param1 = '90000';
 		}
+		if (row.skill == 'Wearwolf' || row.skill == 'Wearbear') {
+			row.auralencalc = "90000+skill('Shape Shifting'.ln12)";
+		}
 	});
 	missile.rows.forEach((row) => {
 	});
