@@ -22,7 +22,7 @@ function installAllMods() {
 	} else if (build == 'lightsorc') {
 		installModLightSorc(magicprefix, magicsuffix);
 	} else if (build == 'bearsorc') {
-		installBearSorc(magicprefix, magicsuffix);
+		installModBearSorc(magicprefix, magicsuffix);
 	}
 
 	D2RMM.writeTsv(magicprefixFile, magicprefix);
