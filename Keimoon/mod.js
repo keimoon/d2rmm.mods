@@ -316,6 +316,18 @@ function changeAmazonSkill(skill, missile) {
 	});
 }
 
+// DRUID SKILL
+function changeDruidSkill(skill, missile) {
+	console.debug("Changing Druid skills");
+	skill.rows.forEach((row) => {
+		if (row.skill == 'Shape Shifting') {
+			row.Param1 = '90000';
+		}
+	});
+	missile.rows.forEach((row) => {
+	});
+}
+
 // TREASURE CLASSES
 // Make high level items easier to appear and more predictable
 
