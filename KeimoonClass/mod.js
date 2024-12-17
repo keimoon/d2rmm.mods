@@ -23,6 +23,8 @@ function installAllMods() {
 		installModLightSorc(magicprefix, magicsuffix);
 	} else if (build == 'bearsorc') {
 		installModBearSorc(magicprefix, magicsuffix);
+	} else if (build == 'coldsorc') {
+		installModColdSorc(magicprefix, magicsuffix);
 	}
 
 	D2RMM.writeTsv(magicprefixFile, magicprefix);
@@ -298,6 +300,28 @@ function installModBearSorc(magicprefix, magicsuffix) {
 			let iTypes = getItypesFromRow(row);
 			changeCommonMagicSuffix(row, iTypes, false);
 			changePhysicMagicSuffix(row, iTypes);
+		}
+	});
+}
+
+// COLD SORC
+function installModColdSorc(magicprefix, magicsuffix) {
+	magicprefix.rows.forEach((row) => {
+		if (row.version == '1' || row.version == '100') {
+			let iTypes = getItypesFromRow(row);
+			changeCommonPrefix(row, iTypes);
+			changeCasterMagicPrefix(row, iTypes);
+			if (row.group == '125' && row.mod1param == '5') {
+				updateClassSkillTab(row);
+			}
+		}
+	});
+
+	magicsuffix.rows.forEach((row) => {
+		if (row.version == '1' || row.version == '100') {
+			let iTypes = getItypesFromRow(row);
+			changeCommonMagicSuffix(row, iTypes, false);
+			changeCasterMagicSuffix(row, iTypes);
 		}
 	});
 }

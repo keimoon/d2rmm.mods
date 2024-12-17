@@ -176,6 +176,7 @@ function changeSorceressSkill(skill, missile) {
 		}
 		if (row.skill == 'Enchant') {
 			row.Param1 = '90000';
+			row.restrict = '1';
 		}
 		if (row.skill == 'Chain Lightning') {
 			row.Param1 = '40';
@@ -189,6 +190,18 @@ function changeSorceressSkill(skill, missile) {
 			row.Param1 = '90000';
 			row.Param3 = '1'
 			row.Param5 = '100';
+			row.restrict = '1';
+		}
+		if (row.skill == 'Blizzard') {
+			row.localdelay = '';
+			row.globaldelay = '';
+			row.LineOfSight = '';
+			row.Param1 = '10';
+			row.Param2 = '1';
+		}
+		if (row.skill == 'Frozen Orb') {
+			row.localdelay = '';
+			row.globaldelay = '';
 		}
 	});
 	missile.rows.forEach((row) => {

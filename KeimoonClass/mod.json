@@ -19,7 +19,8 @@
 				{ "value": "holyfirepaladin", "label": "Holy Fire Paladin" },
 				{ "value": "tesladin", "label": "Tesladin" },
 				{ "value": "lightsorc", "label": "Lightning sorc" },
-				{ "value": "bearsorc", "label": "Bear sorc" }
+				{ "value": "bearsorc", "label": "Bear sorc" },
+				{ "value": "coldsorc", "label": "Cold sorc" }
 			]
 		}
 	]
