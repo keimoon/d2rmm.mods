@@ -1223,7 +1223,7 @@ function addMakeEtherealItemRecipes(cubemain) {
 }
 
 function addCharmUpgradeRecipes(cubemain) {
-const recipes = [
+	const recipes = [
 		{
 			'description': '(KM) 2 Small Charm -> 1 Large Charm',
 			'enabled': 1,
@@ -1240,6 +1240,26 @@ const recipes = [
 			'version': 100,
 			'numinputs': 2,
 			'input 1': 'mcha,qty=2',
+			'output': 'lcha,rar',
+			'plvl': '125',
+			'*eol\r': 0
+		},
+		{
+			'description': '(KM) 3 Rings -> 1 Grand Charm',
+			'enabled': 1,
+			'version': 100,
+			'numinputs': 3,
+			'input 1': 'ring,qty=3',
+			'output': 'lcha,rar',
+			'plvl': '125',
+			'*eol\r': 0
+		},
+		{
+			'description': '(KM) 3 Amulets -> 1 Grand Charm',
+			'enabled': 1,
+			'version': 100,
+			'numinputs': 3,
+			'input 1': 'amul,qty=3',
 			'output': 'lcha,rar',
 			'plvl': '125',
 			'*eol\r': 0
