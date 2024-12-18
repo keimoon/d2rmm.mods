@@ -1245,21 +1245,23 @@ function addCharmUpgradeRecipes(cubemain) {
 			'*eol\r': 0
 		},
 		{
-			'description': '(KM) 3 Rings -> 1 Grand Charm',
+			'description': '(KM) 3 Rings + 1 Hpot -> 1 Grand Charm',
 			'enabled': 1,
 			'version': 100,
-			'numinputs': 3,
+			'numinputs': 4,
 			'input 1': 'ring,qty=3',
+			'input 2': 'hpot',
 			'output': 'lcha,rar',
 			'plvl': '125',
 			'*eol\r': 0
 		},
 		{
-			'description': '(KM) 3 Amulets -> 1 Grand Charm',
+			'description': '(KM) 3 Amulets + 1 Hpot -> 1 Grand Charm',
 			'enabled': 1,
 			'version': 100,
-			'numinputs': 3,
+			'numinputs': 4,
 			'input 1': 'amul,qty=3',
+			'input 2': 'hpot',
 			'output': 'lcha,rar',
 			'plvl': '125',
 			'*eol\r': 0
