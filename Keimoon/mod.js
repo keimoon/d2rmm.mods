@@ -134,7 +134,7 @@ function changeMissileSpeed(missile) {
 		['firebolt', '80'],
 		['fireball', '80'],
 		['freezingarrow', '48'],
-		['glacialspike', '20'],
+		['glacialspike', '80'],
 		['poisonnova', '40'],
 		['lightningfury', '80'],
 		['multipleshotarrow', '48'],
@@ -197,7 +197,7 @@ function changeSorceressSkill(skill, missile) {
 			row.globaldelay = '';
 			row.LineOfSight = '';
 			row.Param1 = '10';
-			row.Param2 = '1';
+			row.Param3 = '1';
 		}
 		if (row.skill == 'Frozen Orb') {
 			row.localdelay = '';
