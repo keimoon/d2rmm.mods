@@ -203,6 +203,9 @@ function changeSorceressSkill(skill, missile) {
 			row.localdelay = '';
 			row.globaldelay = '';
 		}
+		if (row.skill == 'Glacial Spike') {
+			row.Param1 = '30';
+		}
 	});
 	missile.rows.forEach((row) => {
 		changeSorcMissileMeteor(row);
