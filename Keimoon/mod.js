@@ -198,6 +198,7 @@ function changeSorceressSkill(skill, missile) {
 			row.LineOfSight = '';
 			row.Param1 = '14';
 			row.Param3 = '1';
+			row.Param8 = '10';
 			row.mana = '10';
 			row.lvlmana = '0';
 		}
@@ -207,6 +208,7 @@ function changeSorceressSkill(skill, missile) {
 		}
 		if (row.skill == 'Glacial Spike') {
 			row.Param1 = '30';
+			row.Param8 = '10';
 			row.lvlmana = '0';
 		}
 	});
