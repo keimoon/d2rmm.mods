@@ -196,8 +196,10 @@ function changeSorceressSkill(skill, missile) {
 			row.localdelay = '';
 			row.globaldelay = '';
 			row.LineOfSight = '';
-			row.Param1 = '10';
+			row.Param1 = '14';
 			row.Param3 = '1';
+			row.mana = '10';
+			row.lvlmana = '0';
 		}
 		if (row.skill == 'Frozen Orb') {
 			row.localdelay = '';
@@ -205,6 +207,7 @@ function changeSorceressSkill(skill, missile) {
 		}
 		if (row.skill == 'Glacial Spike') {
 			row.Param1 = '30';
+			row.lvlmana = '0';
 		}
 	});
 	missile.rows.forEach((row) => {
