@@ -190,6 +190,7 @@ function changeSorceressSkill(skill, missile) {
 			row.Param1 = '90000';
 			row.Param3 = '1'
 			row.Param5 = '100';
+			row.Param7 = '30';
 			row.restrict = '1';
 		}
 		if (row.skill == 'Blizzard') {
@@ -214,6 +215,11 @@ function changeSorceressSkill(skill, missile) {
 	});
 	missile.rows.forEach((row) => {
 		changeSorcMissileMeteor(row);
+		if (row.Missile == 'nova') {
+			row.Vel = '48';
+			row.MaxVel = '48';
+			row.Range = '26';
+		}
 	});
 }
 
