@@ -20,7 +20,8 @@
 				{ "value": "tesladin", "label": "Tesladin" },
 				{ "value": "lightsorc", "label": "Lightning sorc" },
 				{ "value": "bearsorc", "label": "Bear sorc" },
-				{ "value": "coldsorc", "label": "Cold sorc" }
+				{ "value": "coldsorc", "label": "Cold sorc" },
+				{ "value": "winddruid", "label": "Wind Druid" }
 			]
 		}
 	]
