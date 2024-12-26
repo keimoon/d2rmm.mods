@@ -360,18 +360,26 @@ function changeDruidSkill(skill, missile) {
 		}
 		if (row.skill == 'Firestorm') {
 			row.Param1 = '10';
+			row.localdelay = '';
+			row.globaldelay = '';
 		}
 		if (row.skill == 'Molten Boulder') {
 			row.Param1 = '30';
+			row.localdelay = '';
+			row.globaldelay = '';
 		}
 		if (row.skill == 'Eruption') {
 			row.Param1 = '14';
 			row.Param2 = '1';
+			row.localdelay = '';
+			row.globaldelay = '';
 		}
 		if (row.skill == 'Hurricane') {
 			row.Param1 = '90000';
 			row.Param3 = '18';
 			row.Param4 = '1';
+			row.localdelay = '';
+			row.globaldelay = '';
 		}
 	});
 	missile.rows.forEach((row) => {
