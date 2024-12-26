@@ -25,6 +25,8 @@ function installAllMods() {
 		installModBearSorc(magicprefix, magicsuffix);
 	} else if (build == 'coldsorc') {
 		installModColdSorc(magicprefix, magicsuffix);
+	} else if (build == 'winddruid') {
+		installModWindDruid(magicprefix, magicsuffix);
 	}
 
 	D2RMM.writeTsv(magicprefixFile, magicprefix);
@@ -312,6 +314,28 @@ function installModColdSorc(magicprefix, magicsuffix) {
 			changeCommonPrefix(row, iTypes);
 			changeCasterMagicPrefix(row, iTypes);
 			if (row.group == '125' && row.mod1param == '5') {
+				updateClassSkillTab(row);
+			}
+		}
+	});
+
+	magicsuffix.rows.forEach((row) => {
+		if (row.version == '1' || row.version == '100') {
+			let iTypes = getItypesFromRow(row);
+			changeCommonMagicSuffix(row, iTypes, false);
+			changeCasterMagicSuffix(row, iTypes);
+		}
+	});
+}
+
+// Wind Druid
+function installModWindDruid(magicprefix, magicsuffix) {
+	magicprefix.rows.forEach((row) => {
+		if (row.version == '1' || row.version == '100') {
+			let iTypes = getItypesFromRow(row);
+			changeCommonPrefix(row, iTypes);
+			changeCasterMagicPrefix(row, iTypes);
+			if (row.group == '125' && row.mod1param == '17') {
 				updateClassSkillTab(row);
 			}
 		}

@@ -153,7 +153,9 @@ function changeMissileSpeed(missile) {
 		['sentrylightningbolt', '45'],
 		['chargedbolt', '36'],
 		['lightningbolt', '60'],
-		['chainlightning', '60']
+		['chainlightning', '60'],
+		['firestormmaker', '32'],
+		['tornado', '24']
 	]);
 	missile.rows.forEach((row) => {
 		let newVel = vels.get(row.Missile);
@@ -356,11 +358,26 @@ function changeDruidSkill(skill, missile) {
 		if (row.skill == 'Shape Shifting') {
 			row.Param1 = '90000';
 		}
-		// if (row.skill == 'Wearwolf' || row.skill == 'Wearbear') {
-		// 	row.auralencalc = "90000+skill('Shape Shifting'.ln12)";
-		// }
+		if (row.skill == 'Firestorm') {
+			row.Param1 = '10';
+		}
+		if (row.skill == 'Molten Boulder') {
+			row.Param1 = '30';
+		}
+		if (row.skill == 'Eruption') {
+			row.Param1 = '14';
+			row.Param2 = '1';
+		}
+		if (row.skill == 'Hurricane') {
+			row.Param1 = '90000';
+			row.Param3 = '18';
+			row.Param4 = '1';
+		}
 	});
 	missile.rows.forEach((row) => {
+		if (row.Missile == 'firestormmaker') {
+			row.Range = '100';
+		}
 	});
 }
 
