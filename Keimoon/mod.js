@@ -373,6 +373,7 @@ function changeDruidSkill(skill, missile) {
 			row.Param2 = '1';
 			row.localdelay = '';
 			row.globaldelay = '';
+			row.LineOfSight = '';
 		}
 		if (row.skill == 'Hurricane') {
 			row.Param1 = '90000';
