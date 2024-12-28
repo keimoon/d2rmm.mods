@@ -344,7 +344,7 @@ function installModWindDruid(magicprefix, magicsuffix) {
 	magicsuffix.rows.forEach((row) => {
 		if (row.version == '1' || row.version == '100') {
 			let iTypes = getItypesFromRow(row);
-			changeCommonMagicSuffix(row, iTypes, false);
+			changeCommonMagicSuffix(row, iTypes, true);
 			changeCasterMagicSuffix(row, iTypes);
 		}
 	});
