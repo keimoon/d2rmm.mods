@@ -335,6 +335,7 @@ function installModWindDruid(magicprefix, magicsuffix) {
 			let iTypes = getItypesFromRow(row);
 			changeCommonPrefix(row, iTypes);
 			changeCasterMagicPrefix(row, iTypes);
+			changeSocketPrefix(row);
 			if (row.group == '125' && row.mod1param == '17') {
 				updateClassSkillTab(row);
 			}
@@ -346,7 +347,6 @@ function installModWindDruid(magicprefix, magicsuffix) {
 			let iTypes = getItypesFromRow(row);
 			changeCommonMagicSuffix(row, iTypes, true);
 			changeCasterMagicSuffix(row, iTypes);
-			changeSocketPrefix(row);
 		}
 	});
 }
