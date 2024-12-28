@@ -346,6 +346,7 @@ function installModWindDruid(magicprefix, magicsuffix) {
 			let iTypes = getItypesFromRow(row);
 			changeCommonMagicSuffix(row, iTypes, true);
 			changeCasterMagicSuffix(row, iTypes);
+			changeSocketPrefix(row);
 		}
 	});
 }
@@ -428,6 +429,20 @@ function changeCharmMaxDamagePrefix(row) {
 		if (row.itype1 == 'scha') {
 			row.rare = 1;
 			row.frequency = 100;
+		}
+	}
+}
+
+// OTHER PREFIX
+function changeSocketPrefix(row) {
+	if (row.group == '122') {
+		row.rare = 1;
+		row.frequency = 100;
+		if (row.level == '10') {
+			row.maxlevel = '32';
+		}
+		if (row.level == '33') {
+			row.maxlevel = '54';
 		}
 	}
 }
