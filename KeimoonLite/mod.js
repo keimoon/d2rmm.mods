@@ -204,11 +204,10 @@ function changeAssassinSkill(skill, missile) {
 			row.Param8 = '30';
 		}
 		if (row.skill == 'Blades of Ice') {
-			row.Param1 = '30';
-			row.Param2 = '30';
 			row.Param3 = '10000';
 		}
 		if (row.skill == 'Royal Strike') {
+			row.auralencalc = '10000';
 			row.Param1 = '30';
 			row.Param2 = '30';
 			row.Param5 = '64';
