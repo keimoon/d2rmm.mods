@@ -177,6 +177,9 @@ function changeAssassinSkill(skill, missile) {
 		if (row.skill == 'Quickness') {
 			row.Param5 = '90000';
 		}
+		if (row.skill == 'Fade') {
+			row.Param5 = '90000';
+		}
 		if (row.skill == 'Fists of Fire') {
 			row.Param1 = '30';
 			row.Param3 = '10000';
@@ -203,8 +206,15 @@ function changeAssassinSkill(skill, missile) {
 		if (row.skill == 'sentry lightning') {
 			row.Param8 = '30';
 		}
+		if (row.skill == 'Claws of Thunder') {
+			row.Param3 = '10000';
+			row.Param1 = '1';
+			row.Param2 = '9';
+		}
 		if (row.skill == 'Blades of Ice') {
 			row.Param3 = '10000';
+			row.Param1 = '9';
+			row.Param2 = '9';
 		}
 		if (row.skill == 'Royal Strike') {
 			row.auralencalc = '10000';
