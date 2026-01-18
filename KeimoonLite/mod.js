@@ -128,6 +128,9 @@ function changeSorceressSkill(skill, missile) {
 		if (row.skill == 'Static Field') {
 			row.Param1 = '40';
 		}
+		if (row.skill == 'Nova') {
+			row.lvlmana = '0';
+		}
 	});
 	missile.rows.forEach((row) => {
 		changeSorcMissileMeteor(row);
