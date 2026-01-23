@@ -316,10 +316,75 @@ function changeDruidSkill(skill, missile) {
 	});
 }
 
+// Change drop for mob that drop pandemonium keys
+function changePandemoniumKeysProb(row) {
+	const name = row['Treasure Class'];
+	if (name == 'Summoner (H)') {
+		row.Picks = '3'
+		let found = false;
+		for (i = 1; i <= 10; i++) {
+			if (found) {
+				break;
+			}
+			if (row['Item' + i] == 'pk2') {
+				found = true;
+				row['Prob' + i] = '1';
+			} else {
+				row['Prob' + i] = '0';
+			}
+		}
+	}
+	if (name == 'Smith (H)') {
+		row.Picks = '3'
+		let found = false;
+		for (i = 1; i <= 10; i++) {
+			if (found) {
+				break;
+			}
+			if (row['Item' + i] == '') {
+				found = true;
+				row['Item' + i] = 'pk3';
+				row['Prob' + i] = '1';
+			} else {
+				row['Prob' + i] = '0';
+			}
+		}
+	}
+	if (name == 'Izual (H)') {
+		row.Picks = '3'
+		let found = false;
+		for (i = 1; i <= 10; i++) {
+			if (found) {
+				break;
+			}
+			if (row['Item' + i] == '') {
+				found = true;
+				row['Item' + i] = 'pk1';
+				row['Prob' + i] = '1';
+			} else {
+				row['Prob' + i] = '0';
+			}
+		}
+	}
+}
+
+function installTreasureClassMod() {
+	console.debug("Installing Treasure class");
+	const treasureClassFile = 'global\\excel\\treasureclassex.txt';
+	let treasureClass = D2RMM.readTsv(treasureClassFile);
+
+	treasureClass.rows.forEach((row) => {
+		changePandemoniumKeysProb(row);
+	});
+
+	D2RMM.writeTsv(treasureClassFile, treasureClass);
+}
+
 function installAllMods() {
 	console.debug("Installing keimoon-mod-lite");
 	installCharStatsMods();
 	installSkillMods();
+	installTreasureClassMod();
 }
 
 installAllMods();
