@@ -31,6 +31,7 @@ function installSkillMods() {
 	changeBarbarianSkill(skill, missile);
 	changeAmazonSkill(skill, missile);
 	changeDruidSkill(skill, missile);
+	changePalladinSkill(skill, missile);
 
 	D2RMM.writeTsv(missileFile, missile);
 	D2RMM.writeTsv(skillFile, skill);
@@ -312,6 +313,20 @@ function changeDruidSkill(skill, missile) {
 	missile.rows.forEach((row) => {
 		if (row.Missile == 'firestormmaker') {
 			row.Range = '100';
+		}
+	});
+}
+
+// PALLADIN SKILLS
+function changePalladinSkill(skill, missile) {
+	console.debug("Changing Palladin skills");
+	skill.rows.forEach((row) => {
+		if (row.skill == 'Fist of the Heavens') {
+			row.localdelay = '';
+			row.globaldelay = '';
+		}
+		if (row.skill == 'Holy Shield') {
+			row.Param1 = '90000';
 		}
 	});
 }
