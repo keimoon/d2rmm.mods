@@ -15,6 +15,23 @@ function installCharStatsMods() {
 	D2RMM.writeTsv(charStatsFile, charStats);
 }
 
+// ITEMTYPES
+// Enable rare for charms
+
+function installItemTypes() {
+	console.debug("Installing itemtypes.txt");
+	const itemTypesFile = 'global\\excel\\itemtypes.txt';
+	let itemTypes = D2RMM.readTsv(itemTypesFile);
+
+	itemTypes.rows.forEach((row) => {
+		if (row.ItemType.includes('Charm')) {
+			row.Rare = '1';
+		}
+	});
+
+	D2RMM.writeTsv(itemTypesFile, itemTypes);
+}
+
 // SKILLS
 // Bigger, badder skills
 
@@ -398,6 +415,7 @@ function installTreasureClassMod() {
 function installAllMods() {
 	console.debug("Installing keimoon-mod-lite");
 	installCharStatsMods();
+	installItemTypes();
 	installSkillMods();
 	installTreasureClassMod();
 }
