@@ -49,6 +49,8 @@ function installSkillMods() {
 	changeAmazonSkill(skill, missile);
 	changeDruidSkill(skill, missile);
 	changePalladinSkill(skill, missile);
+	// Necromancer must be after Amazon to copy modified Lightning Fury values
+	changeNecromancerSkill(skill, missile);
 
 	D2RMM.writeTsv(missileFile, missile);
 	D2RMM.writeTsv(skillFile, skill);
@@ -346,6 +348,81 @@ function changePalladinSkill(skill, missile) {
 			row.Param1 = '90000';
 		}
 	});
+}
+
+// NECROMANCER SKILLS
+// Give Bone Spear the Lightning Fury splitting behavior
+function changeNecromancerSkill(skill, missile) {
+	console.debug("Changing Necromancer skills");
+
+	// Buff Teeth: increase base number of teeth to 10
+	// Formula is min(ln12,24) where ln12 = Param1 + level * Param2
+	skill.rows.forEach((row) => {
+		if (row.skill == 'Teeth') {
+			row.Param1 = '10'; // base number of missiles (default: 2)
+		}
+	});
+
+	// Find lightningfury missile to copy hit behavior from
+	let lightningFuryRow = missile.rows.find((row) => row.Missile == 'lightningfury');
+	if (!lightningFuryRow) {
+		console.error("Could not find lightningfury missile");
+		return;
+	}
+
+	// Find bonespear missile to modify and copy for submissile
+	let boneSpearRow = missile.rows.find((row) => row.Missile == 'bonespear');
+	if (!boneSpearRow) {
+		console.error("Could not find bonespear missile");
+		return;
+	}
+
+	// Find the highest missile ID to assign a new one
+	let maxId = 0;
+	missile.rows.forEach((row) => {
+		let id = parseInt(row.Id);
+		if (!isNaN(id) && id > maxId) {
+			maxId = id;
+		}
+	});
+	let newMissileId = (maxId + 1).toString();
+
+	// Create submissile by copying bonespear
+	let boneSpearSplitRow = { ...boneSpearRow };
+	boneSpearSplitRow.Missile = 'bonespearsplit';
+	boneSpearSplitRow.Id = newMissileId;
+	// Submissile should NOT have the splitting hit function (avoid infinite recursion)
+	boneSpearSplitRow.pSrvHitFunc = '';
+	boneSpearSplitRow.pCltHitFunc = '';
+	boneSpearSplitRow.sHitPar1 = '';
+	boneSpearSplitRow.sHitPar2 = '';
+	boneSpearSplitRow.cHitPar1 = '';
+	boneSpearSplitRow.cHitPar2 = '';
+	boneSpearSplitRow.HitSubMissile1 = '';
+	boneSpearSplitRow.HitSubMissile2 = '';
+	boneSpearSplitRow.HitSubMissile3 = '';
+	boneSpearSplitRow.HitSubMissile4 = '';
+	boneSpearSplitRow.CltHitSubMissile1 = '';
+	boneSpearSplitRow.CltHitSubMissile2 = '';
+	boneSpearSplitRow.CltHitSubMissile3 = '';
+	boneSpearSplitRow.CltHitSubMissile4 = '';
+
+	// Add the new submissile to the missile table
+	missile.rows.push(boneSpearSplitRow);
+
+	// Copy hit behavior from lightningfury to bonespear
+	boneSpearRow.pSrvHitFunc = lightningFuryRow.pSrvHitFunc;
+	boneSpearRow.pCltHitFunc = lightningFuryRow.pCltHitFunc;
+	boneSpearRow.sHitPar1 = lightningFuryRow.sHitPar1;
+	boneSpearRow.sHitPar2 = lightningFuryRow.sHitPar2;
+	boneSpearRow.cHitPar1 = lightningFuryRow.cHitPar1;
+	boneSpearRow.cHitPar2 = lightningFuryRow.cHitPar2;
+
+	// Set the submissile to our new bonespearsplit
+	boneSpearRow.HitSubMissile1 = 'bonespearsplit';
+	boneSpearRow.CltHitSubMissile1 = 'bonespearsplit';
+
+	console.debug("Bone Spear now splits like Lightning Fury, submissile ID: " + newMissileId);
 }
 
 // Change drop for mob that drop pandemonium keys
