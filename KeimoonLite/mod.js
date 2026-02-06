@@ -86,7 +86,9 @@ function changeMissileSpeed(missile) {
 		['lightningbolt', '60'],
 		['chainlightning', '60'],
 		['firestormmaker', '32'],
-		['tornado', '24']
+		['tornado', '24'],
+		['teeth', '30'],
+		['bonespear', '30']
 	]);
 	missile.rows.forEach((row) => {
 		let newVel = vels.get(row.Missile);
@@ -359,7 +361,7 @@ function changeNecromancerSkill(skill, missile) {
 	// Formula is min(ln12,24) where ln12 = Param1 + level * Param2
 	skill.rows.forEach((row) => {
 		if (row.skill == 'Teeth') {
-			row.Param1 = '10'; // base number of missiles (default: 2)
+			row.Param1 = '20'; // base number of missiles (default: 2)
 		}
 	});
 
