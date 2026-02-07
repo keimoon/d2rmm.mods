@@ -362,6 +362,10 @@ function changeNecromancerSkill(skill, missile) {
 	skill.rows.forEach((row) => {
 		if (row.skill == 'Teeth') {
 			row.Param1 = '20'; // base number of missiles (default: 2)
+			row.lvlmana = '0';
+		}
+		if (row.skill == 'Bone Spear') {
+			row.lvlmana = '0';
 		}
 	});
 
