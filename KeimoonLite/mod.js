@@ -389,7 +389,7 @@ function changeNecromancerSkill(skill, missile) {
 	// Find the highest missile ID to assign a new one
 	let maxId = 0;
 	missile.rows.forEach((row) => {
-		let id = parseInt(row.Id);
+		let id = parseInt(row['*ID']);
 		if (!isNaN(id) && id > maxId) {
 			maxId = id;
 		}
@@ -399,7 +399,7 @@ function changeNecromancerSkill(skill, missile) {
 	// Create submissile by copying bonespear
 	let boneSpearSplitRow = { ...boneSpearRow };
 	boneSpearSplitRow.Missile = 'bonespearsplit';
-	boneSpearSplitRow.Id = newMissileId;
+	boneSpearSplitRow['*ID'] = newMissileId;
 	// Submissile should NOT have the splitting hit function (avoid infinite recursion)
 	boneSpearSplitRow.pSrvHitFunc = '';
 	boneSpearSplitRow.pCltHitFunc = '';
