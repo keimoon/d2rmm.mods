@@ -88,7 +88,7 @@ function changeMissileSpeed(missile) {
 		['firestormmaker', '32'],
 		['tornado', '24'],
 		['teeth', '30'],
-		['bonespear', '30']
+		['bonespear', '80']
 	]);
 	missile.rows.forEach((row) => {
 		let newVel = vels.get(row.Missile);
@@ -415,17 +415,19 @@ function changeNecromancerSkill(skill, missile) {
 	boneSpearSplitRow.CltHitSubMissile2 = '';
 	boneSpearSplitRow.CltHitSubMissile3 = '';
 	boneSpearSplitRow.CltHitSubMissile4 = '';
+	boneSpearSplitRow.Vel = '80';
+	boneSpearSplitRow.MaxVel = '80';
 
 	// Add the new submissile to the missile table
 	missile.rows.push(boneSpearSplitRow);
 
-	// Copy hit behavior from lightningfury to bonespear
+	// Copy hit functions from lightningfury, but use custom hit params
 	boneSpearRow.pSrvHitFunc = lightningFuryRow.pSrvHitFunc;
 	boneSpearRow.pCltHitFunc = lightningFuryRow.pCltHitFunc;
-	boneSpearRow.sHitPar1 = lightningFuryRow.sHitPar1;
-	boneSpearRow.sHitPar2 = lightningFuryRow.sHitPar2;
-	boneSpearRow.cHitPar1 = lightningFuryRow.cHitPar1;
-	boneSpearRow.cHitPar2 = lightningFuryRow.cHitPar2;
+	boneSpearRow.sHitPar1 = '30';
+	boneSpearRow.sHitPar2 = '30';
+	boneSpearRow.cHitPar1 = '30';
+	boneSpearRow.cHitPar2 = '30';
 
 	// Set the submissile to our new bonespearsplit
 	boneSpearRow.HitSubMissile1 = 'bonespearsplit';
