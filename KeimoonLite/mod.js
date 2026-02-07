@@ -367,6 +367,9 @@ function changeNecromancerSkill(skill, missile) {
 		if (row.skill == 'Bone Spear') {
 			row.lvlmana = '0';
 		}
+		if (row.skill == 'Bone Spirit') {
+			row.lvlmana = '0';
+		}
 	});
 
 	// Find lightningfury missile to copy hit behavior from
