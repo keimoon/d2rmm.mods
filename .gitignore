@@ -4,3 +4,6 @@ tsconfig.json
 types.d.ts
 config-schema.json
 /_*/
+
+# Claude Code
+.claude/*.local.*
