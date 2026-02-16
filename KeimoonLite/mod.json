@@ -6,6 +6,15 @@
 	"version": "1.0",
 	"config": [
 		{
+			"id": "equipScaling",
+			"type": "number",
+			"name": "Equipment Tier Scaling",
+			"description": "Divides the cascade-to-lower-tier probability for equipment treasure classes. Higher values = more high-level items from high-level areas. 1 = vanilla.",
+			"defaultValue": 5,
+			"minValue": 1,
+			"maxValue": 100
+		},
+		{
 			"id": "runeStayChance",
 			"type": "number",
 			"name": "Rune Tier Stay Chance (%)",

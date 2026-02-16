@@ -560,6 +560,26 @@ function changePandemoniumKeysProb(row) {
 	}
 }
 
+// Equipment drop rates: divide cascade-to-lower-tier probability by scaling factor
+// so higher level areas drop more higher level items.
+function changeEquipDropRates(row) {
+	const treasureClass = row['Treasure Class'];
+	if (!treasureClass.startsWith('Act')) {
+		return;
+	}
+	if (!/Equip|Melee|Bow/.test(treasureClass)) {
+		return;
+	}
+	// Find the last Item slot that references a lower tier treasure class
+	for (let i = 10; i >= 1; i--) {
+		const item = row['Item' + i];
+		if (item != null && item.startsWith('Act')) {
+			row['Prob' + i] = Math.max(1, Math.floor(row['Prob' + i] / config.equipScaling));
+			break;
+		}
+	}
+}
+
 // Rune drop rates: set flat A% stay chance for all tiers.
 // For Runes 2-16: Prob1 + Prob2 = A, Prob3 = 100 - A
 // For Runes 17 (Zod): Prob1 = A, Prob2 = 100 - A
@@ -593,6 +613,7 @@ function installTreasureClassMod() {
 	treasureClass.rows.forEach((row) => {
 		changePandemoniumKeysProb(row);
 		changeRuneDropRates(row);
+		changeEquipDropRates(row);
 	});
 
 	D2RMM.writeTsv(treasureClassFile, treasureClass);
