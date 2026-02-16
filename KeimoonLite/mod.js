@@ -620,6 +620,27 @@ function changeItemQuality(row) {
 	});
 }
 
+// Remove gold and junk drops from special monsters (champions, uniques, bosses)
+function changeSpecialMonsterDrops(row) {
+	if (row.Unique == null || row.Unique === '' || +row.Unique <= 0) {
+		return;
+	}
+	let changed = false;
+	for (let i = 1; i <= 10; i++) {
+		const item = row['Item' + i];
+		if (item == null || item === '') {
+			continue;
+		}
+		if (item.startsWith('gld') || item.includes('Junk')) {
+			row['Prob' + i] = '0';
+			changed = true;
+		}
+	}
+	if (changed) {
+		row.NoDrop = '0';
+	}
+}
+
 function installTreasureClassMod() {
 	console.debug("Installing Treasure class");
 	const treasureClassFile = 'global\\excel\\treasureclassex.txt';
@@ -630,6 +651,7 @@ function installTreasureClassMod() {
 		changeRuneDropRates(row);
 		changeEquipDropRates(row);
 		changeItemQuality(row);
+		changeSpecialMonsterDrops(row);
 	});
 
 	D2RMM.writeTsv(treasureClassFile, treasureClass);
