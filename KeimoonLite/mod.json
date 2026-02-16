@@ -6,6 +6,42 @@
 	"version": "1.0",
 	"config": [
 		{
+			"id": "uniqueQuality",
+			"type": "number",
+			"name": "Unique Quality Factor",
+			"description": "Higher = more unique items. Applied to treasure classes that have a Unique value. Vanilla is 800.",
+			"defaultValue": 1024,
+			"minValue": 1,
+			"maxValue": 65535
+		},
+		{
+			"id": "setQuality",
+			"type": "number",
+			"name": "Set Quality Factor",
+			"description": "Higher = more set items. Applied to treasure classes that have a Set value. Vanilla is 800.",
+			"defaultValue": 1024,
+			"minValue": 1,
+			"maxValue": 65535
+		},
+		{
+			"id": "rareQuality",
+			"type": "number",
+			"name": "Rare Quality Factor",
+			"description": "Higher = more rare items. Applied to treasure classes that have a Rare value. Vanilla is 800.",
+			"defaultValue": 1024,
+			"minValue": 1,
+			"maxValue": 65535
+		},
+		{
+			"id": "magicQuality",
+			"type": "number",
+			"name": "Magic Quality Factor",
+			"description": "Higher = more magic items. Applied to treasure classes that have a Magic value. Vanilla is 1024.",
+			"defaultValue": 1024,
+			"minValue": 1,
+			"maxValue": 65535
+		},
+		{
 			"id": "equipScaling",
 			"type": "number",
 			"name": "Equipment Tier Scaling",

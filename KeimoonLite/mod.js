@@ -605,6 +605,21 @@ function changeRuneDropRates(row) {
 	}
 }
 
+// Item quality: if a row has a value for Unique/Set/Rare/Magic, set it to configured value.
+function changeItemQuality(row) {
+	const columns = [
+		{ col: 'Unique', val: config.uniqueQuality },
+		{ col: 'Set', val: config.setQuality },
+		{ col: 'Rare', val: config.rareQuality },
+		{ col: 'Magic', val: config.magicQuality },
+	];
+	columns.forEach(({ col, val }) => {
+		if (row[col] != null && row[col] !== '' && +row[col] > 0) {
+			row[col] = val;
+		}
+	});
+}
+
 function installTreasureClassMod() {
 	console.debug("Installing Treasure class");
 	const treasureClassFile = 'global\\excel\\treasureclassex.txt';
@@ -614,6 +629,7 @@ function installTreasureClassMod() {
 		changePandemoniumKeysProb(row);
 		changeRuneDropRates(row);
 		changeEquipDropRates(row);
+		changeItemQuality(row);
 	});
 
 	D2RMM.writeTsv(treasureClassFile, treasureClass);
