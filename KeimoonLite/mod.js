@@ -500,12 +500,30 @@ function installTreasureClassMod() {
 	D2RMM.writeTsv(treasureClassFile, treasureClass);
 }
 
+// MAGIC PREFIX
+// Increase skilltab frequency on grand charms
+
+function installMagicPrefixMods() {
+	console.debug("Installing magicprefix.txt");
+	const magicPrefixFile = 'global\\excel\\magicprefix.txt';
+	let magicPrefix = D2RMM.readTsv(magicPrefixFile);
+
+	magicPrefix.rows.forEach((row) => {
+		if (row.mod1code == 'skilltab' && row.itype1 == 'lcha') {
+			row.frequency = '200';
+		}
+	});
+
+	D2RMM.writeTsv(magicPrefixFile, magicPrefix);
+}
+
 function installAllMods() {
 	console.debug("Installing keimoon-mod-lite");
 	installCharStatsMods();
 	installItemTypes();
 	installSkillMods();
 	installTreasureClassMod();
+	installMagicPrefixMods();
 }
 
 installAllMods();
