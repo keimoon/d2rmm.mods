@@ -3,5 +3,16 @@
 	"description": "Keimoon mod to destroy the Evils (harder version)",
 	"author": "keimoon",
 	"website": "https://github.com/keimoon/d2rmm.mods",
-	"version": "1.0"
+	"version": "1.0",
+	"config": [
+		{
+			"id": "runeStayChance",
+			"type": "number",
+			"name": "Rune Tier Stay Chance (%)",
+			"description": "Chance of dropping a rune from the current tier instead of cascading to lower tiers. Applies equally to all tiers. Vanilla is roughly 0.1%-71% depending on tier.",
+			"defaultValue": 10,
+			"minValue": 1,
+			"maxValue": 99
+		}
+	]
 }

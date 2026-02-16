@@ -560,6 +560,31 @@ function changePandemoniumKeysProb(row) {
 	}
 }
 
+// Rune drop rates: set flat A% stay chance for all tiers.
+// For Runes 2-16: Prob1 + Prob2 = A, Prob3 = 100 - A
+// For Runes 17 (Zod): Prob1 = A, Prob2 = 100 - A
+function changeRuneDropRates(row) {
+	const treasureClass = row['Treasure Class'];
+	const match = treasureClass.match(/^Runes ([1-9][0-9]?)$/);
+	if (match == null) {
+		return;
+	}
+	const groupNumber = +match[1];
+	if (groupNumber <= 1) {
+		return;
+	}
+	const A = config.runeStayChance;
+	if (groupNumber < 17) {
+		row.Prob1 = Math.floor(A / 2);
+		row.Prob2 = A - Math.floor(A / 2);
+		row.Prob3 = 100 - A;
+	} else {
+		// Zod is half as likely to stay
+		row.Prob1 = Math.floor(A / 2);
+		row.Prob2 = 100 - Math.floor(A / 2);
+	}
+}
+
 function installTreasureClassMod() {
 	console.debug("Installing Treasure class");
 	const treasureClassFile = 'global\\excel\\treasureclassex.txt';
@@ -567,6 +592,7 @@ function installTreasureClassMod() {
 
 	treasureClass.rows.forEach((row) => {
 		changePandemoniumKeysProb(row);
+		changeRuneDropRates(row);
 	});
 
 	D2RMM.writeTsv(treasureClassFile, treasureClass);
