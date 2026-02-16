@@ -1,3 +1,75 @@
+// AUTOMAGIC
+// Make amazon auto magic mod easier to appear
+
+function installAutoMagicMods() {
+	console.debug("Installing automagic.txt");
+	const automagicFile = 'global\\excel\\automagic.txt';
+	let automagic = D2RMM.readTsv(automagicFile);
+
+	const names = [
+		'Fletcher\'s',
+		'Bowyer\'s',
+		'Archer\'s',
+		'Harpoonist\'s',
+		'Spearmaiden\'s',
+		'Lancer\'s'
+	];
+
+	const midLevels = [
+		'Fletcher\'s',
+		'Harpoonist\'s'
+	];
+
+	const highLevels = [
+		'Bowyer\'s',
+		'Spearmaiden\'s'
+	];
+
+	automagic.rows.forEach((row) => {
+		if (names.includes(row.Name)) {
+			row.frequency = '200';
+		}
+		if (midLevels.includes(row.Name)) {
+			row.maxlevel = '39';
+		}
+		if (highLevels.includes(row.Name)) {
+			row.maxlevel = '59';
+		}
+	});
+
+	D2RMM.writeTsv(automagicFile, automagic);
+}
+
+// ARMOR
+// Set same rarity for all armors
+
+function installArmorMods() {
+	console.debug("Installing armor.txt");
+	const armorFile = 'global\\excel\\armor.txt';
+	let armor = D2RMM.readTsv(armorFile);
+
+	armor.rows.forEach((row) => {
+		row.rarity = '1';
+	});
+
+	D2RMM.writeTsv(armorFile, armor);
+}
+
+// WEAPON
+// Set same rarity for all weapons
+
+function installWeaponMods() {
+	console.debug("Installing weapons.txt");
+	const weaponFile = 'global\\excel\\weapons.txt';
+	let weapon = D2RMM.readTsv(weaponFile);
+
+	weapon.rows.forEach((row) => {
+		row.rarity = '1';
+	});
+
+	D2RMM.writeTsv(weaponFile, weapon);
+}
+
 // CHARSTAT
 // Increase Light Radius
 
@@ -517,13 +589,45 @@ function installMagicPrefixMods() {
 	D2RMM.writeTsv(magicPrefixFile, magicPrefix);
 }
 
+// UNIQUE ITEMS
+// Boost rarity of desirable unique rings
+
+function installUniqueItemMods() {
+	console.debug("Installing uniqueitems.txt");
+	const uniqueItemsFile = 'global\\excel\\uniqueitems.txt';
+	let uniqueItems = D2RMM.readTsv(uniqueItemsFile);
+
+	const boostedRings = [
+		'The Stone of Jordan',
+		'Raven Frost',
+		'Bul Katho\'s Wedding Band',
+		'Sling',
+	];
+
+	uniqueItems.rows.forEach((row) => {
+		if (row.code == 'rin') {
+			if (boostedRings.includes(row.index)) {
+				row.rarity = '15';
+			} else {
+				row.rarity = '1';
+			}
+		}
+	});
+
+	D2RMM.writeTsv(uniqueItemsFile, uniqueItems);
+}
+
 function installAllMods() {
 	console.debug("Installing keimoon-mod-lite");
+	installAutoMagicMods();
+	installArmorMods();
+	installWeaponMods();
 	installCharStatsMods();
 	installItemTypes();
 	installSkillMods();
 	installTreasureClassMod();
 	installMagicPrefixMods();
+	installUniqueItemMods();
 }
 
 installAllMods();
