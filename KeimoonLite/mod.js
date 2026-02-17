@@ -123,6 +123,7 @@ function installSkillMods() {
 	changePalladinSkill(skill, missile);
 	// Necromancer must be after Amazon to copy modified Lightning Fury values
 	changeNecromancerSkill(skill, missile);
+	changeWarlockSkill(skill, missile);
 
 	D2RMM.writeTsv(missileFile, missile);
 	D2RMM.writeTsv(skillFile, skill);
@@ -160,7 +161,8 @@ function changeMissileSpeed(missile) {
 		['firestormmaker', '32'],
 		['tornado', '24'],
 		['teeth', '30'],
-		['bonespear', '80']
+		['bonespear', '80'],
+		['miasmabolt', '80']
 	]);
 	missile.rows.forEach((row) => {
 		let newVel = vels.get(row.Missile);
@@ -506,6 +508,31 @@ function changeNecromancerSkill(skill, missile) {
 	boneSpearRow.CltHitSubMissile1 = 'bonespearsplit';
 
 	console.debug("Bone Spear now splits like Lightning Fury, submissile ID: " + newMissileId);
+}
+
+// WARLOCK SKILLS
+function changeWarlockSkill(skill, missile) {
+	console.debug("Changing Warlock skills");
+	skill.rows.forEach((row) => {
+		if (row.charclass == 'war') {
+			row.localdelay = '';
+			row.globaldelay = '';
+		}
+		if (row.skill == 'Hex Purge') {
+			row.Param7 = '3000';
+		}
+		if (row.skill == 'Cleave') {
+			row.calc7 = '10';
+		}
+		if (row.skill == 'Flame Wave') {
+			row.Param3 = '0';
+		}
+	});
+	missile.rows.forEach((row) => {
+		if (row.Missile == 'miasmaboltcloud') {
+			row.Radius = "(skill('Enhanced Entropy'.blvl) >= 10)?20:((skill('Enhanced Entropy'.blvl)>=5)?15:10)";
+		}
+	});
 }
 
 // Change drop for mob that drop pandemonium keys
