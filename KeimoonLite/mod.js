@@ -163,8 +163,7 @@ function changeMissileSpeed(missile) {
 		['teeth', '30'],
 		['bonespear', '80'],
 		['miasmabolt', '80'],
-		['flamewave', '80'],
-		['ringoffire', '80']
+		['flamewave', '80']
 	]);
 	missile.rows.forEach((row) => {
 		let newVel = vels.get(row.Missile);
@@ -528,6 +527,15 @@ function changeWarlockSkill(skill, missile) {
 		}
 		if (row.skill == 'Flame Wave') {
 			row.Param3 = '0';
+		}
+		if (row.skill == 'Ring of Fire') {
+			row.calc2 = '((lvl>=10)?64:32)';
+		}
+		if (row.skill == 'Sigil Lethargy' || row.skill == 'Sigil Rancor') {
+			row.Param1 = '30';
+		}
+		if (row.skill == 'Sigil Death') {
+			row.Param5 = '30';
 		}
 	});
 	missile.rows.forEach((row) => {
