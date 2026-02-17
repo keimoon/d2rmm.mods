@@ -58,6 +58,33 @@
 			"defaultValue": 10,
 			"minValue": 1,
 			"maxValue": 99
+		},
+		{
+			"id": "noDropNormal",
+			"type": "number",
+			"name": "NoDrop Player Count (Normal)",
+			"description": "Simulates /players N for NoDrop on most TCs. 1=vanilla, 0=guaranteed. Excludes worldstone shard and sunder charm TCs.",
+			"defaultValue": 1,
+			"minValue": 0,
+			"maxValue": 1024
+		},
+		{
+			"id": "noDropWorldstone",
+			"type": "number",
+			"name": "NoDrop Player Count (Worldstone Shards)",
+			"description": "Simulates /players N for NoDrop on the 5 Terrorize Act Consumable Desecrated TCs. 1=vanilla (NoDrop=6000), 0=guaranteed.",
+			"defaultValue": 1,
+			"minValue": 0,
+			"maxValue": 1024
+		},
+		{
+			"id": "noDropSunder",
+			"type": "number",
+			"name": "NoDrop Player Count (Sunder Charms)",
+			"description": "Simulates /players N for NoDrop on the Sunder Charms TC. 1=vanilla (NoDrop=23899), 0=guaranteed.",
+			"defaultValue": 1,
+			"minValue": 0,
+			"maxValue": 1024
 		}
 	]
 }

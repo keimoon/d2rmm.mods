@@ -641,6 +641,65 @@ function changeSpecialMonsterDrops(row) {
 	}
 }
 
+// NoDrop reduction: simulate /players N for NoDrop using the formula
+// newNoDrop = floor(probSum / (1 / (noDropChance^N) - 1))
+// Also fix Countess parent TCs to prefer rune drops when NoDrop is modified.
+function changeNoDrop(row) {
+	const noDrop = parseInt(row.NoDrop);
+	if (isNaN(noDrop) || noDrop <= 0) {
+		return;
+	}
+
+	const name = row['Treasure Class'];
+
+	// Determine player count based on TC category
+	let playerCount;
+	if (name.includes('Terrorize Act Consumable')) {
+		playerCount = config.noDropWorldstone;
+	} else if (name === 'Sunder Charms') {
+		playerCount = config.noDropSunder;
+	} else {
+		playerCount = config.noDropNormal;
+	}
+
+	if (playerCount === 1) {
+		return;
+	}
+
+	if (playerCount === 0) {
+		row.NoDrop = '0';
+	} else {
+		let probSum = 0;
+		for (let i = 1; i <= 10; i++) {
+			const prob = parseInt(row['Prob' + i]);
+			if (!isNaN(prob)) {
+				probSum += prob;
+			}
+		}
+		if (probSum > 0) {
+			const noDropChance = noDrop / (noDrop + probSum);
+			const newNoDrop = Math.floor(probSum / (1 / Math.pow(noDropChance, playerCount) - 1));
+			row.NoDrop = String(newNoDrop);
+		}
+	}
+
+	// Fix Countess parent TCs: swap Item1/Item2 so runes are preferred over items
+	if (config.noDropNormal !== 1) {
+		const countessParents = [
+			'Countess', 'Countess (N)', 'Countess (H)',
+			'Countess Desecrated', 'Countess (N) Desecrated', 'Countess (H) Desecrated',
+		];
+		if (countessParents.includes(name)) {
+			const tempItem = row.Item1;
+			const tempProb = row.Prob1;
+			row.Item1 = row.Item2;
+			row.Prob1 = row.Prob2;
+			row.Item2 = tempItem;
+			row.Prob2 = tempProb;
+		}
+	}
+}
+
 function installTreasureClassMod() {
 	console.debug("Installing Treasure class");
 	const treasureClassFile = 'global\\excel\\treasureclassex.txt';
@@ -651,6 +710,7 @@ function installTreasureClassMod() {
 		changeRuneDropRates(row);
 		changeEquipDropRates(row);
 		changeItemQuality(row);
+		changeNoDrop(row);
 		changeSpecialMonsterDrops(row);
 	});
 
