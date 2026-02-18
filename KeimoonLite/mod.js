@@ -525,7 +525,12 @@ function changeWarlockSkill(skill, missile) {
 		if (row.skill == 'Cleave') {
 			row.calc7 = '10';
 		}
+		if (row.skill == 'Consume') {
+			row.Param1 = '90000';
+		}
 		if (row.skill == 'Flame Wave') {
+			row.Param1 = '8';
+			row.Param2 = '14';
 			row.Param3 = '0';
 		}
 		if (row.skill == 'Ring of Fire') {
