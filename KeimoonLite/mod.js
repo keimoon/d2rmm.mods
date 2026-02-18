@@ -518,6 +518,7 @@ function changeWarlockSkill(skill, missile) {
 		if (row.charclass == 'war') {
 			row.localdelay = '';
 			row.globaldelay = '';
+			row.lvlmana = '0';
 		}
 		if (row.skill == 'Hex Purge') {
 			row.Param7 = '3000';
@@ -539,6 +540,10 @@ function changeWarlockSkill(skill, missile) {
 		}
 	});
 	missile.rows.forEach((row) => {
+		if (row.Missile == 'ringoffire') {
+			row.sHitPar1 = '15';
+			row.cHitPar1 = '15';
+		}
 		if (row.Missile == 'miasmaboltcloud') {
 			row.Radius = "(skill('Enhanced Entropy'.blvl) >= 10)?20:((skill('Enhanced Entropy'.blvl)>=5)?15:10)";
 		}
