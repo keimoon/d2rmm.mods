@@ -1,10 +1,20 @@
+const PREFIXES = ['global\\excel\\', 'global\\excel\\base\\'];
+
+function modifyTsv(fileName, modifier) {
+	PREFIXES.forEach((prefix) => {
+		const filePath = prefix + fileName;
+		console.debug('Modifying ' + filePath);
+		let data = D2RMM.readTsv(filePath);
+		modifier(data);
+		D2RMM.writeTsv(filePath, data);
+	});
+}
+
 // AUTOMAGIC
 // Make amazon auto magic mod easier to appear
 
 function installAutoMagicMods() {
 	console.debug("Installing automagic.txt");
-	const automagicFile = 'global\\excel\\automagic.txt';
-	let automagic = D2RMM.readTsv(automagicFile);
 
 	const names = [
 		'Fletcher\'s',
@@ -25,19 +35,19 @@ function installAutoMagicMods() {
 		'Spearmaiden\'s'
 	];
 
-	automagic.rows.forEach((row) => {
-		if (names.includes(row.Name)) {
-			row.frequency = '200';
-		}
-		if (midLevels.includes(row.Name)) {
-			row.maxlevel = '39';
-		}
-		if (highLevels.includes(row.Name)) {
-			row.maxlevel = '59';
-		}
+	modifyTsv('automagic.txt', (automagic) => {
+		automagic.rows.forEach((row) => {
+			if (names.includes(row.Name)) {
+				row.frequency = '200';
+			}
+			if (midLevels.includes(row.Name)) {
+				row.maxlevel = '39';
+			}
+			if (highLevels.includes(row.Name)) {
+				row.maxlevel = '59';
+			}
+		});
 	});
-
-	D2RMM.writeTsv(automagicFile, automagic);
 }
 
 // ARMOR
@@ -45,14 +55,11 @@ function installAutoMagicMods() {
 
 function installArmorMods() {
 	console.debug("Installing armor.txt");
-	const armorFile = 'global\\excel\\armor.txt';
-	let armor = D2RMM.readTsv(armorFile);
-
-	armor.rows.forEach((row) => {
-		row.rarity = '1';
+	modifyTsv('armor.txt', (armor) => {
+		armor.rows.forEach((row) => {
+			row.rarity = '1';
+		});
 	});
-
-	D2RMM.writeTsv(armorFile, armor);
 }
 
 // WEAPON
@@ -60,14 +67,11 @@ function installArmorMods() {
 
 function installWeaponMods() {
 	console.debug("Installing weapons.txt");
-	const weaponFile = 'global\\excel\\weapons.txt';
-	let weapon = D2RMM.readTsv(weaponFile);
-
-	weapon.rows.forEach((row) => {
-		row.rarity = '1';
+	modifyTsv('weapons.txt', (weapon) => {
+		weapon.rows.forEach((row) => {
+			row.rarity = '1';
+		});
 	});
-
-	D2RMM.writeTsv(weaponFile, weapon);
 }
 
 // CHARSTAT
@@ -75,16 +79,13 @@ function installWeaponMods() {
 
 function installCharStatsMods() {
 	console.debug("Installing charstats.txt");
-	const charStatsFile = 'global\\excel\\charstats.txt';
-	let charStats = D2RMM.readTsv(charStatsFile);
-
-	charStats.rows.forEach((row) => {
-		if (row.LightRadius != '') {
-			row.LightRadius = 18;
-		}
+	modifyTsv('charstats.txt', (charStats) => {
+		charStats.rows.forEach((row) => {
+			if (row.LightRadius != '') {
+				row.LightRadius = 18;
+			}
+		});
 	});
-
-	D2RMM.writeTsv(charStatsFile, charStats);
 }
 
 // ITEMTYPES
@@ -92,16 +93,13 @@ function installCharStatsMods() {
 
 function installItemTypes() {
 	console.debug("Installing itemtypes.txt");
-	const itemTypesFile = 'global\\excel\\itemtypes.txt';
-	let itemTypes = D2RMM.readTsv(itemTypesFile);
-
-	itemTypes.rows.forEach((row) => {
-		if (row.ItemType.includes('Charm')) {
-			row.Rare = '1';
-		}
+	modifyTsv('itemtypes.txt', (itemTypes) => {
+		itemTypes.rows.forEach((row) => {
+			if (row.ItemType.includes('Charm')) {
+				row.Rare = '1';
+			}
+		});
 	});
-
-	D2RMM.writeTsv(itemTypesFile, itemTypes);
 }
 
 // SKILLS
@@ -109,24 +107,26 @@ function installItemTypes() {
 
 function installSkillMods() {
 	console.debug("Installing skill mods");
-	const missileFile = 'global\\excel\\missiles.txt';
-	let missile = D2RMM.readTsv(missileFile);
-	const skillFile = 'global\\excel\\skills.txt';
-	let skill = D2RMM.readTsv(skillFile);
+	PREFIXES.forEach((prefix) => {
+		const missileFile = prefix + 'missiles.txt';
+		let missile = D2RMM.readTsv(missileFile);
+		const skillFile = prefix + 'skills.txt';
+		let skill = D2RMM.readTsv(skillFile);
 
-	changeMissileSpeed(missile);
-	changeSorceressSkill(skill, missile);
-	changeAssassinSkill(skill, missile);
-	changeBarbarianSkill(skill, missile);
-	changeAmazonSkill(skill, missile);
-	changeDruidSkill(skill, missile);
-	changePalladinSkill(skill, missile);
-	// Necromancer must be after Amazon to copy modified Lightning Fury values
-	changeNecromancerSkill(skill, missile);
-	changeWarlockSkill(skill, missile);
+		changeMissileSpeed(missile);
+		changeSorceressSkill(skill, missile);
+		changeAssassinSkill(skill, missile);
+		changeBarbarianSkill(skill, missile);
+		changeAmazonSkill(skill, missile);
+		changeDruidSkill(skill, missile);
+		changePalladinSkill(skill, missile);
+		// Necromancer must be after Amazon to copy modified Lightning Fury values
+		changeNecromancerSkill(skill, missile);
+		changeWarlockSkill(skill, missile);
 
-	D2RMM.writeTsv(missileFile, missile);
-	D2RMM.writeTsv(skillFile, skill);
+		D2RMM.writeTsv(missileFile, missile);
+		D2RMM.writeTsv(skillFile, skill);
+	});
 }
 
 function changeMissileSpeed(missile) {
@@ -729,18 +729,15 @@ function changeNoDrop(row) {
 
 function installTreasureClassMod() {
 	console.debug("Installing Treasure class");
-	const treasureClassFile = 'global\\excel\\treasureclassex.txt';
-	let treasureClass = D2RMM.readTsv(treasureClassFile);
-
-	treasureClass.rows.forEach((row) => {
-		changePandemoniumKeysProb(row);
-		changeRuneDropRates(row);
-		changeEquipDropRates(row);
-		changeNoDrop(row);
-		changeSpecialMonsterDrops(row);
+	modifyTsv('treasureclassex.txt', (treasureClass) => {
+		treasureClass.rows.forEach((row) => {
+			changePandemoniumKeysProb(row);
+			changeRuneDropRates(row);
+			changeEquipDropRates(row);
+			changeNoDrop(row);
+			changeSpecialMonsterDrops(row);
+		});
 	});
-
-	D2RMM.writeTsv(treasureClassFile, treasureClass);
 }
 
 // MAGIC PREFIX
@@ -748,16 +745,13 @@ function installTreasureClassMod() {
 
 function installMagicPrefixMods() {
 	console.debug("Installing magicprefix.txt");
-	const magicPrefixFile = 'global\\excel\\magicprefix.txt';
-	let magicPrefix = D2RMM.readTsv(magicPrefixFile);
-
-	magicPrefix.rows.forEach((row) => {
-		if (row.mod1code == 'skilltab' && row.itype1 == 'lcha') {
-			row.frequency = '200';
-		}
+	modifyTsv('magicprefix.txt', (magicPrefix) => {
+		magicPrefix.rows.forEach((row) => {
+			if (row.mod1code == 'skilltab' && row.itype1 == 'lcha') {
+				row.frequency = '200';
+			}
+		});
 	});
-
-	D2RMM.writeTsv(magicPrefixFile, magicPrefix);
 }
 
 // UNIQUE ITEMS
@@ -765,8 +759,6 @@ function installMagicPrefixMods() {
 
 function installUniqueItemMods() {
 	console.debug("Installing uniqueitems.txt");
-	const uniqueItemsFile = 'global\\excel\\uniqueitems.txt';
-	let uniqueItems = D2RMM.readTsv(uniqueItemsFile);
 
 	const boostedRings = [
 		'The Stone of Jordan',
@@ -775,17 +767,17 @@ function installUniqueItemMods() {
 		'Sling',
 	];
 
-	uniqueItems.rows.forEach((row) => {
-		if (row.code == 'rin') {
-			if (boostedRings.includes(row.index)) {
-				row.rarity = '15';
-			} else {
-				row.rarity = '1';
+	modifyTsv('uniqueitems.txt', (uniqueItems) => {
+		uniqueItems.rows.forEach((row) => {
+			if (row.code == 'rin') {
+				if (boostedRings.includes(row.index)) {
+					row.rarity = '15';
+				} else {
+					row.rarity = '1';
+				}
 			}
-		}
+		});
 	});
-
-	D2RMM.writeTsv(uniqueItemsFile, uniqueItems);
 }
 
 function installAllMods() {
