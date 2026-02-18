@@ -520,6 +520,7 @@ function changeWarlockSkill(skill, missile) {
 			row.lvlmana = '0';
 		}
 		if (row.skill == 'Hex Purge') {
+			row.Param3 = '90000';
 			row.Param7 = '3000';
 		}
 		if (row.skill == 'Cleave') {
