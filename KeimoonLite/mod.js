@@ -162,8 +162,7 @@ function changeMissileSpeed(missile) {
 		['tornado', '24'],
 		['teeth', '30'],
 		['bonespear', '80'],
-		['miasmabolt', '80'],
-		['flamewave', '80']
+		['miasmabolt', '80']
 	]);
 	missile.rows.forEach((row) => {
 		let newVel = vels.get(row.Missile);
