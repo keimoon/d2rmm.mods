@@ -523,6 +523,13 @@ function changeWarlockSkill(skill, missile) {
 			row.Param3 = '90000';
 			row.Param7 = '3000';
 		}
+		if (row.skill == 'Hex Bane' || row.skill == 'Hex Siphon') {
+			row.Param3 = '90000';
+		}
+		if (row.skill == 'Blade Warp') {
+			row.Param1 = '30';
+			row.Param3 = '5';
+		}
 		if (row.skill == 'Cleave') {
 			row.calc7 = '10';
 		}
@@ -539,6 +546,9 @@ function changeWarlockSkill(skill, missile) {
 		}
 		if (row.skill == 'Sigil Lethargy' || row.skill == 'Sigil Rancor') {
 			row.Param1 = '30';
+		}
+		if (row.skill == 'Echoing Strike') {
+			row.Param10 = '5';
 		}
 		if (row.skill == 'Sigil Death') {
 			row.Param5 = '30';
