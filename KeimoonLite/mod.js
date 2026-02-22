@@ -162,7 +162,8 @@ function changeMissileSpeed(missile) {
 		['tornado', '24'],
 		['teeth', '30'],
 		['bonespear', '80'],
-		['miasmabolt', '80']
+		['miasmabolt', '80'],
+		['echoingstrike', '80']
 	]);
 	missile.rows.forEach((row) => {
 		let newVel = vels.get(row.Missile);
@@ -549,6 +550,8 @@ function changeWarlockSkill(skill, missile) {
 		}
 		if (row.skill == 'Echoing Strike') {
 			row.Param10 = '5';
+			row.calc5 =
+				"(skill('Mirrored Blades'.blvl) > 0) ? (11+(skill('Mirrored Blades'.blvl)/5)) : 11";
 		}
 		if (row.skill == 'Sigil Death') {
 			row.Param5 = '30';
