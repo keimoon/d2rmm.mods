@@ -313,8 +313,6 @@ function changeAssassinSkill(skill, missile) {
 		}
 		if (row.skill == 'Blades of Ice') {
 			row.Param3 = '10000';
-			row.Param1 = '9';
-			row.Param2 = '9';
 		}
 		if (row.skill == 'Royal Strike') {
 			row.auralencalc = '10000';
@@ -745,6 +743,21 @@ function changeNoDrop(row) {
 	}
 }
 
+// Sunder charm herald tier threshold: modify the ConditionCalc on the Sunder Charms TC
+function changeSunderHeraldTier(row) {
+	if (row['Treasure Class'] !== 'Sunder Charms') {
+		return;
+	}
+	const minTier = config.sunderHeraldTier;
+	if (minTier === 4) {
+		return; // vanilla default
+	}
+	row.ConditionCalc =
+		'"cond(\'MonsterTestElite\', herald)*(stat(\'heraldtier\'.accr) >' +
+		(minTier - 1) +
+		') "';
+}
+
 function installTreasureClassMod() {
 	console.debug("Installing Treasure class");
 	modifyTsv('treasureclassex.txt', (treasureClass) => {
@@ -754,6 +767,7 @@ function installTreasureClassMod() {
 			changeEquipDropRates(row);
 			changeNoDrop(row);
 			changeSpecialMonsterDrops(row);
+			changeSunderHeraldTier(row);
 		});
 	});
 }
@@ -785,13 +799,24 @@ function installUniqueItemMods() {
 		'Sling',
 	];
 
+	const boostedAmulets = [
+		'Mara\'s Kaleidoscope',
+	];
+
 	modifyTsv('uniqueitems.txt', (uniqueItems) => {
 		uniqueItems.rows.forEach((row) => {
 			if (row.code == 'rin') {
 				if (boostedRings.includes(row.index)) {
-					row.rarity = '15';
+					row.rarity = String(config.ringBoostedRarity);
 				} else {
-					row.rarity = '1';
+					row.rarity = String(config.ringBaseRarity);
+				}
+			}
+			if (row.code == 'amu') {
+				if (boostedAmulets.includes(row.index)) {
+					row.rarity = String(config.amuletBoostedRarity);
+				} else {
+					row.rarity = String(config.amuletBaseRarity);
 				}
 			}
 		});

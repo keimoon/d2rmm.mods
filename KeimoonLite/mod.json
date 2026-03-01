@@ -49,6 +49,51 @@
 			"defaultValue": 1,
 			"minValue": 0,
 			"maxValue": 1024
+		},
+		{
+			"id": "ringBoostedRarity",
+			"type": "number",
+			"name": "Boosted Ring Rarity",
+			"description": "Rarity value for desirable unique rings (SoJ, Raven Frost, BK, Sling). Higher = more likely. Vanilla varies per ring.",
+			"defaultValue": 15,
+			"minValue": 1,
+			"maxValue": 100
+		},
+		{
+			"id": "ringBaseRarity",
+			"type": "number",
+			"name": "Other Ring Rarity",
+			"description": "Rarity value for all other unique rings. 1 = equal weight among non-boosted rings.",
+			"defaultValue": 1,
+			"minValue": 1,
+			"maxValue": 100
+		},
+		{
+			"id": "amuletBoostedRarity",
+			"type": "number",
+			"name": "Boosted Amulet Rarity",
+			"description": "Rarity value for Mara's Kaleidoscope. Higher = more likely. Vanilla varies per amulet.",
+			"defaultValue": 15,
+			"minValue": 1,
+			"maxValue": 100
+		},
+		{
+			"id": "amuletBaseRarity",
+			"type": "number",
+			"name": "Other Amulet Rarity",
+			"description": "Rarity value for all other unique amulets. 1 = equal weight among non-boosted amulets.",
+			"defaultValue": 1,
+			"minValue": 1,
+			"maxValue": 100
+		},
+		{
+			"id": "sunderHeraldTier",
+			"type": "number",
+			"name": "Sunder Charm Min Herald Tier",
+			"description": "Minimum herald tier required for sunder charms to drop. Vanilla is 4 (heraldtier > 3). Set to 1 to allow sunder charms from all herald tiers.",
+			"defaultValue": 4,
+			"minValue": 1,
+			"maxValue": 10
 		}
 	]
 }
