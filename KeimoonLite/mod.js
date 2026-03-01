@@ -743,6 +743,25 @@ function changeNoDrop(row) {
 	}
 }
 
+// Ancient Statue drop weight in desecrated act boss TCs
+function changeAncientStatueWeight(row) {
+	const name = row['Treasure Class'];
+	if (!name.includes('Desecrated')) {
+		return;
+	}
+	const weight = config.ancientStatueWeight;
+	if (weight === 1) {
+		return; // vanilla default
+	}
+	for (let i = 1; i <= 10; i++) {
+		const item = row['Item' + i];
+		if (item != null && item.startsWith('Ancient Statue')) {
+			row['Prob' + i] = String(weight);
+			break;
+		}
+	}
+}
+
 // Sunder charm herald tier threshold: modify the ConditionCalc on the Sunder Charms TC
 function changeSunderHeraldTier(row) {
 	if (row['Treasure Class'] !== 'Sunder Charms') {
@@ -768,6 +787,7 @@ function installTreasureClassMod() {
 			changeNoDrop(row);
 			changeSpecialMonsterDrops(row);
 			changeSunderHeraldTier(row);
+			changeAncientStatueWeight(row);
 		});
 	});
 }

@@ -87,6 +87,15 @@
 			"maxValue": 100
 		},
 		{
+			"id": "ancientStatueWeight",
+			"type": "number",
+			"name": "Ancient Statue Drop Weight",
+			"description": "Drop weight for Uber Ancient Summon Materials from desecrated act bosses. Vanilla=1 (~5-10% per kill), 10 (~40-60%), 50 (~90-98%), 100 (~98-100%).",
+			"defaultValue": 1,
+			"minValue": 1,
+			"maxValue": 100
+		},
+		{
 			"id": "sunderHeraldTier",
 			"type": "number",
 			"name": "Sunder Charm Min Herald Tier",
