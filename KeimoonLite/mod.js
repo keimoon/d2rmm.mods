@@ -554,6 +554,9 @@ function changeWarlockSkill(skill, missile) {
 		if (row.skill == 'Sigil Death') {
 			row.Param5 = '30';
 		}
+		if (row.skill == 'Abyss') {
+			row.Param1 = '30';
+		}
 	});
 	missile.rows.forEach((row) => {
 		if (row.Missile == 'ringoffire') {
