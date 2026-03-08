@@ -564,7 +564,7 @@ function changeWarlockSkill(skill, missile) {
 			row.cHitPar1 = '15';
 		}
 		if (row.Missile == 'miasmaboltcloud') {
-			row.Radius = "(skill('Enhanced Entropy'.blvl) >= 10)?20:((skill('Enhanced Entropy'.blvl)>=5)?15:10)";
+			row.Radius = "(skill('Enhanced Entropy'.blvl) >= 10)?30:((skill('Enhanced Entropy'.blvl)>=5)?25:20)";
 		}
 	});
 }
