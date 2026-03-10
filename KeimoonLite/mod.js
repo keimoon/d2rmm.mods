@@ -557,11 +557,15 @@ function changeWarlockSkill(skill, missile) {
 		if (row.skill == 'Abyss') {
 			row.Param1 = '30';
 		}
+
 	});
 	missile.rows.forEach((row) => {
 		if (row.Missile == 'ringoffire') {
 			row.sHitPar1 = '15';
 			row.cHitPar1 = '15';
+		}
+		if (row.Missile == 'abysscenter' || row.Missile == 'abyssexplode') {
+			row.Param5 = '1'; // radius scaling: +1 per Enhanced Entropy level (default: 5)
 		}
 		if (row.Missile == 'miasmaboltcloud') {
 			row.Radius = "(skill('Enhanced Entropy'.blvl) >= 10)?30:((skill('Enhanced Entropy'.blvl)>=5)?25:20)";
