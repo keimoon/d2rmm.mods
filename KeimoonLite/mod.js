@@ -556,6 +556,7 @@ function changeWarlockSkill(skill, missile) {
 		}
 		if (row.skill == 'Abyss') {
 			row.Param1 = '30';
+			row.LineOfSight = '';
 		}
 
 	});
