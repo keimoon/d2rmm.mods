@@ -558,6 +558,11 @@ function changeWarlockSkill(skill, missile) {
 			row.Param1 = '30';
 			row.LineOfSight = '';
 		}
+		if (row.skill == 'Health Link') {
+			row.calc3 = 'min(30,(lvl+1))';
+			row.Param3 = '15';
+			row.Param4 = '30';
+		}
 
 	});
 	missile.rows.forEach((row) => {
