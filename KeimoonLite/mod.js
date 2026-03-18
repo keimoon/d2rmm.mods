@@ -563,12 +563,24 @@ function changeWarlockSkill(skill, missile) {
 			row.Param3 = '15';
 			row.Param4 = '30';
 		}
+		if (row.skill == 'Engorge') {
+			row.Param5 = '90000';
+		}
 
 	});
 	missile.rows.forEach((row) => {
 		if (row.Missile == 'ringoffire') {
 			row.sHitPar1 = '15';
 			row.cHitPar1 = '15';
+		}
+		if (row.Missile == 'sigillethargysmall') {
+			row.Radius = '12';
+		}
+		if (row.Missile == 'sigillethargymedium') {
+			row.Radius = '18';
+		}
+		if (row.Missile == 'sigillethargylarge') {
+			row.Radius = '24';
 		}
 		if (row.Missile == 'abysscenter' || row.Missile == 'abyssexplode') {
 			row.Param5 = '1'; // radius scaling: +1 per Enhanced Entropy level (default: 5)
