@@ -546,6 +546,9 @@ function changeWarlockSkill(skill, missile) {
 		if (row.skill == 'Sigil Lethargy' || row.skill == 'Sigil Rancor') {
 			row.Param1 = '30';
 		}
+		if (row.skill == 'Sigil Lethargy') {
+			row.aurarangecalc = '(lvl >= 20)?24:((lvl>=10)?18:12)';
+		}
 		if (row.skill == 'Echoing Strike') {
 			row.Param10 = '5';
 			row.calc5 =
@@ -572,15 +575,6 @@ function changeWarlockSkill(skill, missile) {
 		if (row.Missile == 'ringoffire') {
 			row.sHitPar1 = '15';
 			row.cHitPar1 = '15';
-		}
-		if (row.Missile == 'sigillethargysmall') {
-			row.Radius = '12';
-		}
-		if (row.Missile == 'sigillethargymedium') {
-			row.Radius = '18';
-		}
-		if (row.Missile == 'sigillethargylarge') {
-			row.Radius = '24';
 		}
 		if (row.Missile == 'abysscenter' || row.Missile == 'abyssexplode') {
 			row.Param5 = '1'; // radius scaling: +1 per Enhanced Entropy level (default: 5)
