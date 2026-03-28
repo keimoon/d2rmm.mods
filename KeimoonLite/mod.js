@@ -844,6 +844,9 @@ function installUniqueItemMods() {
 
 	modifyTsv('uniqueitems.txt', (uniqueItems) => {
 		uniqueItems.rows.forEach((row) => {
+			if (row.index == 'Tyrael\'s Might') {
+				row.rarity = '8';
+			}
 			if (row.code == 'rin') {
 				if (boostedRings.includes(row.index)) {
 					row.rarity = String(config.ringBoostedRarity);
